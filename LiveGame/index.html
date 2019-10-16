@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>Siege of Troy</title>
+    <style>
+        /* We may need to change this */
+        body {
+            margin: 0, auto;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(2, 2, 2);
+        }
+    </style>
+</head>
+
+<!-- We will need to import all .js files through script tags as we create them -->
+<body>
+    <!-- Loads in Phaser v3.11 via CDN -->
+    <!-- If we wanted to, we could also apprently load in the phaser package by sticking it 
+    in the js file, but that seems confusing -->
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    
+    <!-- Source directions for scene files -->
+    <script src="js/castle.js"></script>
+    <script src="js/field.js"></script>
+    <script src="js/town.js"></script>
+</body>
+</html>
