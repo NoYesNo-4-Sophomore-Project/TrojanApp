@@ -15,7 +15,7 @@ var config = {
     scene: [
         //Insert scenes here
         // May need to use 'new' keyword
-        field, 
+        field
         // castle, town
         ]  
 };
