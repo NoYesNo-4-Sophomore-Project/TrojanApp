@@ -11,14 +11,20 @@ class field extends Phaser.Scene {
 
     create () {
         //Add the background image (or at least a portion of if)
-        this.add.image(400, 300, 'field');
+        var background = this.add.image(0, 0, 'field').setOrigin(0,0);
+        
+        // Scales the background image to fit the screen size
+        // Doesn't auto-update; Maybe need to go into update();
+        var heightGame = this.sys.canvas.height;
+        var widthGame = this.sys.canvas.width;
+        background.setDisplaySize(widthGame, heightGame);
 
         //Add the main character
-        mainCharacter = this.physics.add.sprite(100, 450, 'main');
+        var mainCharacter = this.physics.add.sprite(100, 450, 'main');
+        
         mainCharacter.setCollideWorldBounds(true);
+        mainCharacter.setDisplaySize(288, 288);
 
-        //Scale the main character 0.0
-        mainCharacter.setSize(240,240);
     }
 
     update () {
