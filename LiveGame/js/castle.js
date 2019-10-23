@@ -5,7 +5,7 @@ class castle extends Phaser.Scene {
 
     preload () {
         this.load.image('sky', '../assets/sky.png');
-        this.load.spritesheet('Minotaur','assets/Minotaur.png', {framewidth: 95, frameheight: 85,});
+        this.load.spritesheet('Minotaur','assets/Minotaur.png', {framewidth: 95, frameheight: 85});
     }
 
     create () {
