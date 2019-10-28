@@ -12,6 +12,8 @@ var config = {
             debug: false
         }
     },
+    //Defuzzes characters
+    pixelArt: true,
     scene: [
         //Insert scenes here
         // May need to use 'new' keyword
@@ -20,4 +22,8 @@ var config = {
         ]  
 };
 
+// Need to attach any global variables here
 var game = new Phaser.Game(config);
+var mainCharacter;
+var cursors;
+var aKey;
