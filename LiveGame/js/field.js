@@ -7,28 +7,9 @@ class field extends Phaser.Scene {
         //import background and main character
         this.load.image('field', 'assets/RoadToTroy.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> parent of 76d0d95... Update field.js
-=======
->>>>>>> parent of 76d0d95... Update field.js
         this.load.spritesheet('Bandit', 'assets/Bandit.png', { frameWidth: 40, frameheight: 32});
         
-=======
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
->>>>>>> parent of 76d0d95... Update field.js
-=======
-=======
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
->>>>>>> parent of 76d0d95... Update field.js
+
     }
 
     create () {
@@ -42,14 +23,7 @@ class field extends Phaser.Scene {
         background.setDisplaySize(widthGame, heightGame);
 
         //Add the main character
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> parent of 76d0d95... Update field.js
-=======
->>>>>>> parent of 76d0d95... Update field.js
+
         var mainCharacter = this.physics.add.sprite(100, 450, 'main');
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.setDisplaySize(288, 288);
@@ -58,17 +32,6 @@ class field extends Phaser.Scene {
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
        
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
->>>>>>> parent of 76d0d95... Update field.js
-=======
-=======
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
->>>>>>> parent of 76d0d95... Update field.js
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         
         //Contron main character size and makes sure he stays on screen
@@ -107,18 +70,6 @@ class field extends Phaser.Scene {
         // Creates attack key
         aKey = this.input.keyboard.addKey('A');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
-=======
->>>>>>> parent of 76d0d95... Update field.js
-=======
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
-=======
->>>>>>> parent of 76d0d95... Update field.js
->>>>>>> 820a686604bc28db24a1790e408224924bc84c79
     }
 
     update () {
