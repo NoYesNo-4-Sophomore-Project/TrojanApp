@@ -7,13 +7,11 @@ class field extends Phaser.Scene {
         //import background and main character
         this.load.image('field', 'assets/RoadToTroy.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
-        this.load.spritesheet('Bandit', 'assets/Bandit.png', { frameWidth: 40, frameheight: 32});
-        
-
+        this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 40, frameHeight: 30});
     }
 
     create () {
-        //Add the background image (or at least a portion of it)
+        //Add the background image (or at least a portion of if)
         var background = this.add.image(0, 0, 'field').setOrigin(0,0);
         
         // Scales the background image to fit the screen size
@@ -23,20 +21,18 @@ class field extends Phaser.Scene {
         background.setDisplaySize(widthGame, heightGame);
 
         //Add the main character
-
-        var mainCharacter = this.physics.add.sprite(100, 450, 'main');
-        mainCharacter.setCollideWorldBounds(true);
-        mainCharacter.setDisplaySize(288, 288);
-        //Add the enemy bandit... do we want multiple of the same or different bandit sprites?
-        var enemy = this.physics.add.sprite(700, 450, 'Bandit');
-        enemy.setCollideWorldBounds(true);
-        enemy.setDisplaySize(300, 300);
-       
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         
-        //Contron main character size and makes sure he stays on screen
+        //Control main character size and makes sure he stays on screen
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.setDisplaySize(288, 288);
+
+        //Add bandit character
+        enemy = this.physics.add.sprite(400, 450, 'bandit');
+
+        //Control bandit size and makes sure he stays on screen
+        enemy.setCollideWorldBounds(true);
+        enemy.setDisplaySize(300, 300);
 
         //Create animation for main character
         this.anims.create({
