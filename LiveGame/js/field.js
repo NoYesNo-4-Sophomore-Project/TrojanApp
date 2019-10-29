@@ -27,6 +27,10 @@ class field extends Phaser.Scene {
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.setDisplaySize(288, 288);
 
+// TO REMOVE/ALTER: Test using healthbar class
+        var newChar = new healthbar(this);
+        newChar.print();
+
         //Add bandit character
         enemy = this.physics.add.sprite(400, 450, 'bandit');
 
