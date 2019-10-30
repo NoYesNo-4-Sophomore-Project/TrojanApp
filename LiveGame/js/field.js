@@ -7,7 +7,7 @@ class field extends Phaser.Scene {
         //import background and main character
         this.load.image('field', 'assets/RoadToTroy.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
-        this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 40, frameHeight: 30});
+        this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 36, frameHeight: 32});
     }
 
     create () {
