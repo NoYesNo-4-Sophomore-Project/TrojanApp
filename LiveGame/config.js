@@ -28,3 +28,4 @@ var mainCharacter;
 var enemy;
 var cursors;
 var aKey;
+

@@ -27,9 +27,9 @@ class field extends Phaser.Scene {
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.setDisplaySize(288, 288);
 
-// TO REMOVE/ALTER: Test using healthbar class
-        var newChar = new healthbar(this);
-        newChar.print();
+        //Health?
+        mainCharacter.setDataEnabled();
+        mainCharacter.data.set('hp', 5);
 
         //Add bandit character
         enemy = this.physics.add.sprite(400, 450, 'bandit');
@@ -37,6 +37,12 @@ class field extends Phaser.Scene {
         //Control bandit size and makes sure he stays on screen
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
+
+        enemy.setDataEnabled();
+        enemy.data.set('hp', 4);
+
+        //Add collider for main and bandit
+        this.physics.add.collider(mainCharacter, enemy, this.hpDecrease, null, this);
 
         //Create animation for main character
         this.anims.create({
@@ -96,4 +102,5 @@ class field extends Phaser.Scene {
         }
 
     }
+
 };
