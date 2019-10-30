@@ -26,23 +26,37 @@ class field extends Phaser.Scene {
         //Control main character size and makes sure he stays on screen
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.setDisplaySize(288, 288);
+        //mainCharacter.setSize(32, 32)
+        mainCharacter.setPosition(100, 450);
+        mainCharacter.setBounce(0);
 
         //Health?
         mainCharacter.setDataEnabled();
         mainCharacter.data.set('hp', 5);
 
+        //hpDecrease function
+        const hpDecrease = () => {
+            console.log('something worked');
+            let newhp = enemy.data.get('hp');
+            newhp -= 1;
+            enemy.data.set('hp', newhp);
+            console.log('Should now be 3: ' + enemy.data.get('hp'));
+        }
+
         //Add bandit character
-        enemy = this.physics.add.sprite(400, 450, 'bandit');
+        enemy = this.physics.add.sprite(700, 450, 'bandit');
 
         //Control bandit size and makes sure he stays on screen
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
+        enemy.setBounce(0);
 
+        //Set bandit hp
         enemy.setDataEnabled();
         enemy.data.set('hp', 4);
 
         //Add collider for main and bandit
-        this.physics.add.collider(mainCharacter, enemy, this.hpDecrease, null, this);
+        this.physics.add.collider(mainCharacter, enemy, hpDecrease, null, this);
 
         //Create animation for main character
         this.anims.create({
