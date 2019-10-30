@@ -1,6 +1,6 @@
 class town extends Phaser.Scene {
     constructor () {
-        super('Game');
+        super('townGame');
     }
 
     preload () {
