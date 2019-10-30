@@ -43,6 +43,10 @@ class field extends Phaser.Scene {
             console.log('Should now be 3: ' + enemy.data.get('hp'));
         }
 
+        const hitBandit = () => {
+            //Add fun code here for later!
+        }
+
         //Add bandit character
         enemy = this.physics.add.sprite(700, 450, 'bandit');
 
