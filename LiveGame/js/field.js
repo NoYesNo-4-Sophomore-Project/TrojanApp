@@ -67,7 +67,7 @@ class field extends Phaser.Scene {
             Bandit character bounds setting and scaling
             Bandit character health
         */
-        enemy = this.physics.add.sprite(700, 450, 'bandit');
+        enemy = this.physics.add.sprite(500, 450, 'bandit');
 
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
@@ -100,7 +100,7 @@ class field extends Phaser.Scene {
 
         flag = this.physics.add.sprite(800, 450, 'Roman Flag');
         flag.setCollideWorldBounds(true);
-        flag.setDisplaySize(500, 500);
+        flag.setDisplaySize(300, 300);
         flag.setBounce(0);
 
     }
