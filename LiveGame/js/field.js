@@ -32,6 +32,7 @@ class field extends Phaser.Scene {
         mainCharacter.setDisplaySize(288, 288);
         mainCharacter.setBounce(0);
 
+        //Reminder: .setInteractive([shape]);
         mainCharacter.setDataEnabled();
         mainCharacter.data.set('hp', 5);
 
