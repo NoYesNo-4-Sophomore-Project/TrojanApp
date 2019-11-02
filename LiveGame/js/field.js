@@ -8,7 +8,7 @@ class field extends Phaser.Scene {
         this.load.image('field', 'assets/RoadToTroy.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
         this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 36, frameHeight: 32});
-        this.load.spritesheet('Roman Flag', 'assets/Roman Flag.png', {frameWidth: 32, frameHeight: 90});
+        this.load.spritesheet('flag', 'assets/romanflag.png', {frameWidth: 32, frameHeight: 90});
     }
 
     create () {
@@ -78,6 +78,14 @@ class field extends Phaser.Scene {
         enemy.data.set('hp', 4);
 
         /*
+            Flag icon inclusion
+            Flag bounds setting and scaling
+        */
+        flag = this.physics.add.sprite(800, 450, 'flag');
+        flag.setCollideWorldBounds(true);
+        flag.setDisplaySize(256, 720);
+
+        /*
             Functions
             hpDecrease function manages attack action and bandit hp
         */
@@ -94,15 +102,10 @@ class field extends Phaser.Scene {
             Collider between main character and enemy calls hpDecrease function
             Sets up arrow keys and 'a' key for motion of main character
         */
-        this.physics.add.collider(mainCharacter, enemy, flag, hpDecrease, null, this);
+        this.physics.add.collider(mainCharacter, enemy, hpDecrease, null, this);
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
-
-        flag = this.physics.add.sprite(800, 450, 'Roman Flag');
-        flag.setCollideWorldBounds(true);
-        flag.setDisplaySize(300, 300);
-        flag.setBounce(0);
 
     }
 

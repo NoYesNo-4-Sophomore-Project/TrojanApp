@@ -26,6 +26,7 @@ var config = {
 var game = new Phaser.Game(config);
 var mainCharacter;
 var enemy;
+var flag;
 var cursors;
 var aKey;
 
