@@ -33,7 +33,10 @@ class field extends Phaser.Scene {
         mainCharacter.setDisplaySize(288, 288);
         mainCharacter.setBounce(0);
 
-        //Reminder: .setInteractive([shape]);
+        var b = new Phaser.Geom.Rectangle(100, 450, 32, 48);
+        mainCharacter.setSize(b.width, b.height);
+        mainCharacter.setOffset(0, 0);
+
         mainCharacter.setDataEnabled();
         mainCharacter.data.set('hp', 5);
 
@@ -67,15 +70,22 @@ class field extends Phaser.Scene {
             Bandit character inclusion
             Bandit character bounds setting and scaling
             Bandit character health
+            Bandit - prevent him from moving due to collision
         */
         enemy = this.physics.add.sprite(500, 450, 'bandit');
 
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
-        enemy.setBounce(0);
+
+        var c = new Phaser.Geom.Rectangle(500, 450, 28, 32);
+        enemy.setSize(c.width, c.height);
+        enemy.setOffset(10, 0);
 
         enemy.setDataEnabled();
         enemy.data.set('hp', 4);
+
+        enemy.setBounce(0);
+        enemy.body.setImmovable(true);
 
         /*
             Flag icon inclusion
@@ -88,13 +98,16 @@ class field extends Phaser.Scene {
         /*
             Functions
             hpDecrease function manages attack action and bandit hp
+            DOESN'T WORK YET
         */
         const hpDecrease = () => {
-            console.log('something worked');
-            let newhp = enemy.data.get('hp');
-            newhp -= 1;
-            enemy.data.set('hp', newhp);
-            console.log('Should now be 3: ' + enemy.data.get('hp'));
+            // console.log('hi');
+            // mainCharacter.anims.play('attack');
+            // console.log('worked?');
+            // let newhp = enemy.data.get('hp');
+            // newhp -= 1;
+            // enemy.data.set('hp', newhp);
+            // console.log('Should now be 3: ' + enemy.data.get('hp'));
         }
 
         /* 
