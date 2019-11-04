@@ -107,10 +107,10 @@ class field extends Phaser.Scene {
             // let newhp = enemy.data.get('hp');
             // newhp -= 1;
             // enemy.data.set('hp', newhp);
-            // console.log('Should now be 3: ' + enemy.data.get('hp'));
-        }
+            // console.log('Should now be 3: ' + enemy.data.get('hp'));       
+         }
 
-        /* 
+         /* 
             Extra
             Collider between main character and enemy calls hpDecrease function
             Sets up arrow keys and 'a' key for motion of main character
