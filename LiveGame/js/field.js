@@ -87,6 +87,9 @@ class field extends Phaser.Scene {
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
 
+        enemy.setVelocityX(160);
+        enemy.anims.play();
+
         /*
             Flag icon inclusion
             Flag bounds setting and scaling
@@ -145,9 +148,43 @@ class field extends Phaser.Scene {
             mainCharacter.anims.play('turn');
         }
  
-        if (cursors.up.isDown&& mainCharacter.body.touching.down){
+        if (cursors.up.isDown && mainCharacter.body.touching.down){
             mainCharacter.setVelocityY(-200);
         }
 
+        
+
     }
+
+    moveEnemy()
+    {
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('bandit', { start: 2, end: 5 }),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('bandit', {start: 2, end: 5}),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'bandit', frame: 0 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers('bandit', {start: 1, end: 1}),
+            frameRate: 5,
+        });
+        enemy.setVelocityX(160);
+        enemy.anims.play('right');
+    }
+ 
 }
