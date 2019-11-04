@@ -72,7 +72,7 @@ class field extends Phaser.Scene {
             Bandit character health
             Bandit - prevent him from moving due to collision
         */
-        enemy = this.physics.add.sprite(500, 450, 'bandit');
+        enemy = this.physics.add.sprite(1000, 450, 'bandit');
 
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
@@ -91,7 +91,7 @@ class field extends Phaser.Scene {
             Flag icon inclusion
             Flag bounds setting and scaling
         */
-        flag = this.physics.add.sprite(800, 450, 'flag');
+        flag = this.physics.add.sprite(2000, 450, 'flag');
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
 
@@ -137,14 +137,17 @@ class field extends Phaser.Scene {
         }
         else if (aKey.isDown){
             mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack');
+            mainCharacter.anims.play('attack'); 
         }
         else
         {
             mainCharacter.setVelocityX(0);
             mainCharacter.anims.play('turn');
         }
+ 
+        if (cursors.up.isDown&& mainCharacter.body.touching.down){
+            mainCharacter.setVelocityY(-200);
+        }
 
     }
-
-};
+}
