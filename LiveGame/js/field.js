@@ -71,6 +71,7 @@ class field extends Phaser.Scene {
             Bandit character bounds setting and scaling
             Bandit character health
             Bandit - prevent him from moving due to collision
+            Bandit character keyboard animations
         */
         enemy = this.physics.add.sprite(1000, 450, 'bandit');
 
@@ -87,6 +88,33 @@ class field extends Phaser.Scene {
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
 
+        this.anims.create({
+            key: 'bleft',
+            frames: this.anims.generateFrameNumbers('bandit', { start: 2, end: 5 }),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'bright',
+            frames: this.anims.generateFrameNumbers('bandit', {start: 2, end: 5}),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'bturn',
+            frames: [ { key: 'bandit', frame: 0 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'battack',
+            frames: this.anims.generateFrameNumbers('bandit', {start: 1, end: 1}),
+            frameRate: 5,
+        });
+
+        // What are we doing here?
         enemy.setVelocityX(160);
         enemy.anims.play();
 
@@ -101,7 +129,6 @@ class field extends Phaser.Scene {
         /*
             Functions
             hpDecrease function manages attack action and bandit hp
-            DOESN'T WORK YET
         */
         const hpDecrease = () => {
             if (aKey.isDown){
@@ -110,7 +137,7 @@ class field extends Phaser.Scene {
                 newhp -= 1;
                 enemy.data.set('hp', newhp);
             }
-            console.log('Should now be 3: ' + enemy.data.get('hp'));
+           // console.log('Should now be 3: ' + enemy.data.get('hp'));
         }
 
          /* 
@@ -118,7 +145,7 @@ class field extends Phaser.Scene {
             Collider between main character and enemy calls hpDecrease function
             Sets up arrow keys and 'a' key for motion of main character
         */
-        this.physics.add.collider(mainCharacter, enemy, hpDecrease, null, this);
+        this.physics.add.overlap(mainCharacter, enemy, hpDecrease, null, this);
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
@@ -148,41 +175,15 @@ class field extends Phaser.Scene {
             mainCharacter.anims.play('turn');
         }
  
+        // What is this for?
         if (cursors.up.isDown && mainCharacter.body.touching.down){
             mainCharacter.setVelocityY(-200);
         }
-
-        
-
     }
 
+    //What did you want to do with this?
     moveEnemy()
     {
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('bandit', { start: 2, end: 5 }),
-            frameRate: 5,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('bandit', {start: 2, end: 5}),
-            frameRate: 5,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'bandit', frame: 0 } ],
-            frameRate: 20
-        });
-
-        this.anims.create({
-            key: 'attack',
-            frames: this.anims.generateFrameNumbers('bandit', {start: 1, end: 1}),
-            frameRate: 5,
-        });
         enemy.setVelocityX(160);
         enemy.anims.play('right');
     }
