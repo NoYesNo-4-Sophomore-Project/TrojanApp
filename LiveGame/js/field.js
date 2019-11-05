@@ -72,7 +72,7 @@ class field extends Phaser.Scene {
             Bandit character health
             Bandit - prevent him from moving due to collision
         */
-        enemy = this.physics.add.sprite(500, 450, 'bandit');
+        enemy = this.physics.add.sprite(1000, 450, 'bandit');
 
         enemy.setCollideWorldBounds(true);
         enemy.setDisplaySize(300, 300);
@@ -87,11 +87,14 @@ class field extends Phaser.Scene {
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
 
+        enemy.setVelocityX(160);
+        enemy.anims.play();
+
         /*
             Flag icon inclusion
             Flag bounds setting and scaling
         */
-        flag = this.physics.add.sprite(800, 450, 'flag');
+        flag = this.physics.add.sprite(2000, 450, 'flag');
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
 
@@ -110,7 +113,7 @@ class field extends Phaser.Scene {
             console.log('Should now be 3: ' + enemy.data.get('hp'));
         }
 
-        /* 
+         /* 
             Extra
             Collider between main character and enemy calls hpDecrease function
             Sets up arrow keys and 'a' key for motion of main character
@@ -137,14 +140,51 @@ class field extends Phaser.Scene {
         }
         else if (aKey.isDown){
             mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack');
+            mainCharacter.anims.play('attack'); 
         }
         else
         {
             mainCharacter.setVelocityX(0);
             mainCharacter.anims.play('turn');
         }
+ 
+        if (cursors.up.isDown && mainCharacter.body.touching.down){
+            mainCharacter.setVelocityY(-200);
+        }
+
+        
 
     }
 
-};
+    moveEnemy()
+    {
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('bandit', { start: 2, end: 5 }),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('bandit', {start: 2, end: 5}),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'bandit', frame: 0 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers('bandit', {start: 1, end: 1}),
+            frameRate: 5,
+        });
+        enemy.setVelocityX(160);
+        enemy.anims.play('right');
+    }
+ 
+}
