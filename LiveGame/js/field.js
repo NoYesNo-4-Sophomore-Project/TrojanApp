@@ -101,13 +101,13 @@ class field extends Phaser.Scene {
             DOESN'T WORK YET
         */
         const hpDecrease = () => {
-            // console.log('hi');
-            // mainCharacter.anims.play('attack');
-            // console.log('worked?');
-            // let newhp = enemy.data.get('hp');
-            // newhp -= 1;
-            // enemy.data.set('hp', newhp);
-            // console.log('Should now be 3: ' + enemy.data.get('hp'));
+            if (aKey.isDown){
+                console.log("hi");
+                let newhp = enemy.data.get('hp');
+                newhp -= 1;
+                enemy.data.set('hp', newhp);
+            }
+            console.log('Should now be 3: ' + enemy.data.get('hp'));
         }
 
         /* 
