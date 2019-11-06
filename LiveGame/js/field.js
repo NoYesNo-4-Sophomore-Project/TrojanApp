@@ -5,7 +5,8 @@ class field extends Phaser.Scene {
 
     preload () {
         //Importing assets
-        this.load.image('field', 'assets/RoadToTroy.png');
+        this.load.image('field', 'assets/NoRoad.png');
+        this.load.image('fence', 'assets/RoadOnly.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
         this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 36, frameHeight: 32});
         this.load.spritesheet('flag', 'assets/romanflag.png', {frameWidth: 32, frameHeight: 90});
@@ -16,10 +17,15 @@ class field extends Phaser.Scene {
             Background inclusion and scaling
             - Doesn't auto-update to screen size
         */
-        var background = this.add.image(0, 0, 'field').setOrigin(0,0);
+        var background2;
+        var background;
+        this.background = this.add.tileSprite(0, 0, widthGame, heightGame, 'field');
+        this.background2 = this.add.tileSprite(0, 0, widthGame, heightGame, 'fence');
+        this.background2.setOrigin(0, 0);
+        this.background.setOrigin(0, 0);
         var heightGame = this.sys.canvas.height;
         var widthGame = this.sys.canvas.width;
-        background.setDisplaySize(widthGame, heightGame);
+        
 
         /* 
             Main character inclusion
@@ -32,6 +38,7 @@ class field extends Phaser.Scene {
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.setDisplaySize(288, 288);
         mainCharacter.setBounce(0);
+        
 
         var b = new Phaser.Geom.Rectangle(100, 450, 32, 48);
         mainCharacter.setSize(b.width, b.height);
@@ -39,6 +46,7 @@ class field extends Phaser.Scene {
 
         mainCharacter.setDataEnabled();
         mainCharacter.data.set('hp', 5);
+        
 
         this.anims.create({
             key: 'left',
@@ -87,6 +95,7 @@ class field extends Phaser.Scene {
 
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
+        
 
         this.anims.create({
             key: 'bleft',
@@ -125,6 +134,7 @@ class field extends Phaser.Scene {
         flag = this.physics.add.sprite(2000, 450, 'flag');
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
+        
 
         /*
             Functions
@@ -149,6 +159,7 @@ class field extends Phaser.Scene {
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
+        
 
     }
 
