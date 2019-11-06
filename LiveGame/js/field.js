@@ -115,7 +115,7 @@ class field extends Phaser.Scene {
         });
 
         // What are we doing here?
-        enemy.setVelocityX(160);
+        //enemy.setVelocityX(160);
         enemy.anims.play();
 
         /*
@@ -136,8 +136,8 @@ class field extends Phaser.Scene {
                 let newhp = enemy.data.get('hp');
                 newhp -= 1;
                 enemy.data.set('hp', newhp);
+                //enemy.x -= 50;
             }
-           // console.log('Should now be 3: ' + enemy.data.get('hp'));
         }
 
          /* 
@@ -185,7 +185,7 @@ class field extends Phaser.Scene {
     moveEnemy()
     {
         enemy.setVelocityX(160);
-        enemy.anims.play('right');
+        enemy.anims.play('bright');
     }
  
 }
