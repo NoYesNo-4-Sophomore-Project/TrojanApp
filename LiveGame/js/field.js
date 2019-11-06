@@ -181,7 +181,4 @@ class field extends Phaser.Scene {
         }
     }
 
-    //What did you want to do with this?
-   
-
 }
