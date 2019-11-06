@@ -192,11 +192,4 @@ class field extends Phaser.Scene {
         }
     }
 
-    //What did you want to do with this?
-    moveEnemy()
-    {
-        enemy.setVelocityX(160);
-        enemy.anims.play('right');
-    }
- 
 }
