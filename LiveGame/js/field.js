@@ -10,6 +10,8 @@ class field extends Phaser.Scene {
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
         this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 36, frameHeight: 32});
         this.load.spritesheet('flag', 'assets/romanflag.png', {frameWidth: 32, frameHeight: 90});
+        this.load.spritesheet('bandit2','assets/Bandit2.png',{frameWidth: 36, frameHeight: 32});
+        this.load.spritesheet('bandit3','assets/Bandit3.png',{frameWidth: 36, frameHeight: 32});
     }
 
     create () {
@@ -122,7 +124,13 @@ class field extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('bandit', {start: 1, end: 1}),
             frameRate: 5,
         });
+        enemy2 = this.physics.add.sprite(1250, 450, 'bandit2');
+        enemy2.setCollideWorldBounds(true);
+        enemy2.setDisplaySize(300, 300);
 
+        enemy3 = this.physics.add.sprite(1500, 450, 'bandit3');
+        enemy3.setCollideWorldBounds(true);
+        enemy3.setDisplaySize(300, 300);
         // What are we doing here?
         //enemy.setVelocityX(160);
         enemy.anims.play();
