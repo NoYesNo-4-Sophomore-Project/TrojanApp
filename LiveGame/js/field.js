@@ -25,6 +25,8 @@ class field extends Phaser.Scene {
         this.background.setOrigin(0, 0);
         var heightGame = this.sys.canvas.height;
         var widthGame = this.sys.canvas.width;
+        this.background.setDisplaySize(widthGame, heightGame);
+        this.background2.setDisplaySize(widthGame, heightGame);
         
 
         /* 
@@ -122,6 +124,7 @@ class field extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('bandit', {start: 1, end: 1}),
             frameRate: 5,
         });
+
         enemy2 = this.physics.add.sprite(1250, 450, 'bandit2');
         enemy2.setCollideWorldBounds(true);
         enemy2.setDisplaySize(300, 300);
