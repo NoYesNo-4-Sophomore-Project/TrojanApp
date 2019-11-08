@@ -29,4 +29,5 @@ var enemy;
 var flag;
 var cursors;
 var aKey;
-
+var enemy2;
+var enemy3;
