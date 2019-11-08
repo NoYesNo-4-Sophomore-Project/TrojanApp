@@ -17,8 +17,6 @@ class field extends Phaser.Scene {
             Background inclusion and scaling
             - Doesn't auto-update to screen size
         */
-        var background2;
-        var background;
         this.background = this.add.tileSprite(0, 0, widthGame, heightGame, 'field');
         this.background2 = this.add.tileSprite(0, 0, widthGame, heightGame, 'fence');
         this.background2.setOrigin(0, 0);
