@@ -153,8 +153,10 @@ class field extends Phaser.Scene {
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
 
-        if (mainCharacter.x = 2000)
+        if (mainCharacter.x == 2000 && mainCharacter.y == 450)
             flag.play('flagdrop');
+        
+            
         
             
         /*
