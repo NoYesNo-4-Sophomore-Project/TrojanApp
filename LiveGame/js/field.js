@@ -134,17 +134,29 @@ class field extends Phaser.Scene {
         enemy3.setDisplaySize(300, 300);
         // What are we doing here?
         //enemy.setVelocityX(160);
-        enemy.anims.play();
+        
 
         /*
             Flag icon inclusion
             Flag bounds setting and scaling
         */
+        
+        this.anims.create({
+            key:'flagdrop',
+            frames: this.anims.generateFrameNumbers('flag', {start: 0, end: 5}),
+            frameRate: 1,
+            repeat: -1,
+        });
+
         flag = this.physics.add.sprite(2000, 450, 'flag');
+        
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
-        
 
+        if (mainCharacter.x = 2000)
+            flag.play('flagdrop');
+        
+            
         /*
             Functions
             hpDecrease function manages attack action and bandit hp
@@ -199,6 +211,7 @@ class field extends Phaser.Scene {
         if (cursors.up.isDown && mainCharacter.body.touching.down){
             mainCharacter.setVelocityY(-200);
         }
+        
     }
 
     //What did you want to do with this?
