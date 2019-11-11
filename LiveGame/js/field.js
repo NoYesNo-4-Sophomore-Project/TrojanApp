@@ -164,10 +164,6 @@ class field extends Phaser.Scene {
         flag.setDisplaySize(256, 720);
         flag.displayHeight = heightGame;
         flag.displayWidth = widthGame * 0.2;
-
-        // Would advise turning this into an overlap call as with the bandit and main character
-        // if (mainCharacter.x == 2000 && mainCharacter.y == 450)
-        //     flag.play('flagdrop');
             
         /*
             Functions
