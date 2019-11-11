@@ -155,7 +155,7 @@ class field extends Phaser.Scene {
             key:'flagdrop',
             frames: this.anims.generateFrameNumbers('flag', {start: 0, end: 5}),
             frameRate: 1,
-            repeat: -1,
+            repeat: 0,
         });
 
         flag = this.physics.add.sprite(2000, 450, 'flag');
@@ -166,12 +166,13 @@ class field extends Phaser.Scene {
         flag.displayWidth = widthGame * 0.2;
 
         // Would advise turning this into an overlap call as with the bandit and main character
-        if (mainCharacter.x == 2000 && mainCharacter.y == 450)
-            flag.play('flagdrop');
+        // if (mainCharacter.x == 2000 && mainCharacter.y == 450)
+        //     flag.play('flagdrop');
             
         /*
             Functions
             hpDecrease function manages attack action and bandit hp
+            flagDrop triggers flag drop animation when main character interacts with flag
         */
         const hpDecrease = () => {
             if (aKey.isDown){
@@ -182,13 +183,18 @@ class field extends Phaser.Scene {
                 //enemy.x -= 50;
             }
         };
-
+        
+        const flagDrop = () => {
+            flag.play('flagdrop', true);
+        };
          /* 
             Extra
             Collider between main character and enemy calls hpDecrease function
+            Collider between flag and main character called flag drop function
             Sets up arrow keys and 'a' key for motion of main character
         */
         this.physics.add.overlap(mainCharacter, enemy, hpDecrease, null, this);
+        this.physics.add.overlap(mainCharacter, flag, flagDrop, null, this);
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
