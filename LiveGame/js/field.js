@@ -166,6 +166,7 @@ class field extends Phaser.Scene {
         flag.displayWidth = widthGame * 0.2;
 
         // Would advise turning this into an overlap call as with the bandit and main character
+        //attempt to make flag animation interact with main character 
         if (mainCharacter.x == 2000 && mainCharacter.y == 450)
             flag.play('flagdrop');
             
