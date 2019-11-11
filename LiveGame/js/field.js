@@ -38,10 +38,10 @@ class field extends Phaser.Scene {
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         
         mainCharacter.setCollideWorldBounds(true);
-        mainCharacter.setDisplaySize(288, 288);
-        mainCharacter.setBounce(0);
+        mainCharacter.displayHeight = heightGame * 0.45;
+        mainCharacter.displayWidth = widthGame * 0.2;
+        mainCharacter.setBounce(0.2);
         
-
         var b = new Phaser.Geom.Rectangle(100, 450, 32, 48);
         mainCharacter.setSize(b.width, b.height);
         mainCharacter.setOffset(0, 0);
@@ -82,11 +82,13 @@ class field extends Phaser.Scene {
             Bandit character health
             Bandit - prevent him from moving due to collision
             Bandit character keyboard animations
+            Bandit 2 amd 3 inclusion
         */
         enemy = this.physics.add.sprite(1000, 450, 'bandit');
 
         enemy.setCollideWorldBounds(true);
-        enemy.setDisplaySize(300, 300);
+        enemy.displayHeight = heightGame * 0.45;
+        enemy.displayWidth = widthGame * 0.2;
 
         var c = new Phaser.Geom.Rectangle(500, 450, 28, 32);
         enemy.setSize(c.width, c.height);
@@ -97,7 +99,6 @@ class field extends Phaser.Scene {
 
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
-        
 
         this.anims.create({
             key: 'bleft',
@@ -125,17 +126,26 @@ class field extends Phaser.Scene {
             frameRate: 5,
         });
 
+        // Bandit 2 character 
         enemy2 = this.physics.add.sprite(1250, 450, 'bandit2');
+
         enemy2.setCollideWorldBounds(true);
-        enemy2.setDisplaySize(300, 300);
+        enemy2.displayHeight = heightGame * 0.45;
+        enemy2.displayWidth = widthGame * 0.2;
 
+        enemy2.setSize(c.width, c.height);
+        enemy2.setOffset(10, 0);
+
+        // Bandit 3 character
         enemy3 = this.physics.add.sprite(1500, 450, 'bandit3');
-        enemy3.setCollideWorldBounds(true);
-        enemy3.setDisplaySize(300, 300);
-        // What are we doing here?
-        //enemy.setVelocityX(160);
-        
 
+        enemy3.setCollideWorldBounds(true);
+        enemy3.displayHeight = heightGame * 0.45;
+        enemy3.displayWidth = widthGame * 0.2;
+        
+        enemy3.setSize(c.width, c.height);
+        enemy3.setOffset(10, 0);
+        
         /*
             Flag icon inclusion
             Flag bounds setting and scaling
@@ -152,12 +162,12 @@ class field extends Phaser.Scene {
         
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
+        flag.displayHeight = heightGame;
+        flag.displayWidth = widthGame * 0.2;
 
+        // Would advise turning this into an overlap call as with the bandit and main character
         if (mainCharacter.x == 2000 && mainCharacter.y == 450)
             flag.play('flagdrop');
-        
-            
-        
             
         /*
             Functions
@@ -171,7 +181,7 @@ class field extends Phaser.Scene {
                 enemy.data.set('hp', newhp);
                 //enemy.x -= 50;
             }
-        }
+        };
 
          /* 
             Extra
@@ -208,12 +218,10 @@ class field extends Phaser.Scene {
             mainCharacter.setVelocityX(0);
             mainCharacter.anims.play('turn');
         }
- 
-        // What is this for?
-        if (cursors.up.isDown && mainCharacter.body.touching.down){
-            mainCharacter.setVelocityY(-200);
-        }
         
+        if (cursors.up.isDown && mainCharacter.body.onFloor()){
+            mainCharacter.setVelocityY(-200);
+        }  
     }
 
     //What did you want to do with this?
