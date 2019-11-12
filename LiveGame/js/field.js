@@ -23,6 +23,8 @@ class field extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, widthGame, heightGame, 'fence');
         this.background2.setOrigin(0, 0);
         this.background.setOrigin(0, 0);
+        this.background.setScrollFactor(0);
+        this.background2.setScrollFactor(1);
         var heightGame = this.sys.canvas.height;
         var widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
@@ -195,7 +197,13 @@ class field extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
         
+        this.cameras.main.setBounds(0, 0, 2560, heightGame);
+        this.cameras.main.startFollow(mainCharacter);
+        
+    }
 
+    newMethod(camera) {
+        return new camera();
     }
 
     update () {
@@ -224,6 +232,7 @@ class field extends Phaser.Scene {
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
         }  
+        
     }
 
     //What did you want to do with this?
@@ -232,5 +241,5 @@ class field extends Phaser.Scene {
         enemy.setVelocityX(160);
         enemy.anims.play('bright');
     }
- 
+
 }
