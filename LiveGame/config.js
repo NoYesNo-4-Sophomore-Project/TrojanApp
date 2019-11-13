@@ -25,9 +25,11 @@ var config = {
 // Need to attach any global variables here
 var game = new Phaser.Game(config);
 var mainCharacter;
+var mainhp;
 var enemy;
 var enemy2;
 var enemy3;
 var flag;
 var cursors;
 var aKey;
+var gameOver;
