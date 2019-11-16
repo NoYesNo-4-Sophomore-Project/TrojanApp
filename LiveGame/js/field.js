@@ -40,8 +40,8 @@ class field extends Phaser.Scene {
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         
         mainCharacter.setCollideWorldBounds(true);
-        mainCharacter.displayHeight = heightGame * 0.45;
-        mainCharacter.displayWidth = widthGame * 0.2;
+        mainCharacter.displayHeight = heightGame * 0.3;
+        mainCharacter.displayWidth = widthGame * 0.15;
         mainCharacter.setBounce(0.2);
         
         var b = new Phaser.Geom.Rectangle(100, 450, 32, 48);
@@ -92,8 +92,8 @@ class field extends Phaser.Scene {
         enemy = this.physics.add.sprite(500, 450, 'bandit');
 
         enemy.setCollideWorldBounds(true);
-        enemy.displayHeight = heightGame * 0.45;
-        enemy.displayWidth = widthGame * 0.2;
+        enemy.displayHeight = heightGame * 0.3;
+        enemy.displayWidth = widthGame * 0.15;
         enemy.setSize(c.width, c.height);
         enemy.setOffset(10, 0);
 
@@ -133,8 +133,8 @@ class field extends Phaser.Scene {
         enemy2 = this.physics.add.sprite(1250, 450, 'bandit2');
 
         enemy2.setCollideWorldBounds(true);
-        enemy2.displayHeight = heightGame * 0.45;
-        enemy2.displayWidth = widthGame * 0.2;
+        enemy2.displayHeight = heightGame * 0.3;
+        enemy2.displayWidth = widthGame * 0.15;
         enemy2.setSize(c.width, c.height);
         enemy2.setOffset(10, 0);
 
@@ -145,8 +145,8 @@ class field extends Phaser.Scene {
         enemy3 = this.physics.add.sprite(1500, 450, 'bandit3');
 
         enemy3.setCollideWorldBounds(true);
-        enemy3.displayHeight = heightGame * 0.45;
-        enemy3.displayWidth = widthGame * 0.2;
+        enemy3.displayHeight = heightGame * 0.3;
+        enemy3.displayWidth = widthGame * 0.15;
         enemy3.setSize(c.width, c.height);
         enemy3.setOffset(10, 0);
 
@@ -163,8 +163,8 @@ class field extends Phaser.Scene {
         
         flag.setCollideWorldBounds(true);
         flag.setDisplaySize(256, 720);
-        flag.displayHeight = heightGame;
-        flag.displayWidth = widthGame * 0.2;
+        flag.displayHeight = heightGame * .9;
+        flag.displayWidth = widthGame * .15;
 
         this.anims.create({
             key:'flagdrop',
@@ -281,7 +281,7 @@ class field extends Phaser.Scene {
         
         gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
         gameOver.visible = false;
-        
+
         this.cameras.main.setBounds(0, 0, 2560, heightGame);
         this.cameras.main.startFollow(mainCharacter);
         
