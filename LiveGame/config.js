@@ -9,17 +9,14 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 300},
-            debug: true
+            debug: false
         }
     },
     //Defuzzes characters
     pixelArt: true,
-    scene: [
-        //Insert scenes here
-        // May need to use 'new' keyword
-        field
-        // castle, town
-        ]  
+    //Insert scenes here
+    // May need to use 'new' keyword
+    scene: [field, castle]  
 };
 
 // Need to attach any global variables here

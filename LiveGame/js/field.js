@@ -1,6 +1,6 @@
 class field extends Phaser.Scene {
     constructor() {
-        super('fieldGame');
+        super({key: 'field'});
     }
 
     preload () {
@@ -130,7 +130,7 @@ class field extends Phaser.Scene {
         });
 
         // Bandit 2 character 
-        enemy2 = this.physics.add.sprite(1250, 450, 'bandit2');
+        enemy2 = this.physics.add.sprite(750, 450, 'bandit2');
 
         enemy2.setCollideWorldBounds(true);
         enemy2.displayHeight = heightGame * 0.3;
@@ -141,8 +141,10 @@ class field extends Phaser.Scene {
         enemy2.setDataEnabled();
         enemy2.data.set('hp', 50);
 
+        enemy2.setVisible(false);
+
         // Bandit 3 character
-        enemy3 = this.physics.add.sprite(1500, 450, 'bandit3');
+        enemy3 = this.physics.add.sprite(800, 450, 'bandit3');
 
         enemy3.setCollideWorldBounds(true);
         enemy3.displayHeight = heightGame * 0.3;
@@ -152,6 +154,8 @@ class field extends Phaser.Scene {
 
         enemy3.setDataEnabled();
         enemy3.data.set('hp', 40);
+
+        enemy3.setVisible(false);
         
         /*
             Flag icon inclusion
@@ -183,8 +187,9 @@ class field extends Phaser.Scene {
         function hpDecrease () {
             if (aKey.isDown){
                 let newhp = enemy.data.get('hp');
-                if (newhp == 0){
+                if (newhp <= 0){
                     enemy.destroy();
+                    enemy2.setVisible(true);
                 }
                 else {
                 newhp -= 2;
@@ -213,8 +218,9 @@ class field extends Phaser.Scene {
         function hpDecrease2 () {
             if (aKey.isDown){
                 let newhp = enemy2.data.get('hp');
-                if (newhp == 0){
+                if (newhp <= 0){
                     enemy2.destroy();
+                    enemy3.setVisible(true);
                 }
                 else {
                 newhp -= 2;
@@ -260,6 +266,7 @@ class field extends Phaser.Scene {
         
         const flagDrop = () => {
             flag.play('flagdrop', true);
+            flag.state = 1;
         };
 
         
@@ -287,9 +294,10 @@ class field extends Phaser.Scene {
         
     }
 
-    newMethod(camera) {
-        return new camera();
-    }
+    //I don't think this does anything
+    // newMethod(camera) {
+    //     return new camera();
+    // }
 
     update () {
         //Game over function
@@ -323,6 +331,13 @@ class field extends Phaser.Scene {
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
         }  
+
+        //Start next scene when you hit the flag.
+        //TODO: Add timer so that we can see the flag actually move.
+        if (flag.state == 1){
+            this.scene.stop('field');
+            this.scene.start('castle');
+        }
         
     }
 }
