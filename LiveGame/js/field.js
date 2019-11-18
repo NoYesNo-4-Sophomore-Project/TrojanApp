@@ -130,7 +130,7 @@ class field extends Phaser.Scene {
         });
 
         // Bandit 2 character 
-        enemy2 = this.physics.add.sprite(750, 450, 'bandit2');
+        enemy2 = this.physics.add.sprite(600, 450, 'bandit2');
 
         enemy2.setCollideWorldBounds(true);
         enemy2.displayHeight = heightGame * 0.3;
@@ -144,7 +144,7 @@ class field extends Phaser.Scene {
         enemy2.setVisible(false);
 
         // Bandit 3 character
-        enemy3 = this.physics.add.sprite(800, 450, 'bandit3');
+        enemy3 = this.physics.add.sprite(700, 450, 'bandit3');
 
         enemy3.setCollideWorldBounds(true);
         enemy3.displayHeight = heightGame * 0.3;
@@ -182,7 +182,8 @@ class field extends Phaser.Scene {
             hpDecrease function manages attack action, bandit hp, and character hp
             hpDecrease2 function manages attack action, bandit2 hp
             hpDecrease3 function manages attack action, bandit3 hp, and character hp
-            flagDrop triggers flag drop animation when main character interacts with flag
+            flagDrop triggers flag drop animation when main character interacts with flag, as well as timer
+            startNextScene stops current field scene and transitions to town scene
         */
         function hpDecrease () {
             if (aKey.isDown){
@@ -254,9 +255,8 @@ class field extends Phaser.Scene {
                 if (dec === 1){
                     enemy3.y += 5;
                     mainhp = mainCharacter.data.get('hp');
-                    mainhp -= 4;
+                    mainhp -= 2;
                     mainCharacter.data.set('hp', mainhp);
-                    console.log(mainhp);
                 }
                 else {
                     enemy3.y -= 10;
@@ -266,9 +266,13 @@ class field extends Phaser.Scene {
         
         const flagDrop = () => {
             flag.play('flagdrop', true);
-            flag.state = 1;
+            timerX.paused = false;
         };
 
+        const startNextScene = () => {
+            this.scene.stop('field');
+            this.scene.start('town');
+        }
         
          /* 
             Extra
@@ -277,6 +281,8 @@ class field extends Phaser.Scene {
             Collider between flag and main character called flag drop function
             Sets up arrow keys and 'a' key for motion of main character
             Create 'GAME OVER' text and set it as invisible for initial rendering purposes
+            Camera settings
+            Timer settings
         */
         this.physics.add.overlap(mainCharacter, enemy, hpDecrease, null, this);
         this.physics.add.overlap(mainCharacter, enemy2, hpDecrease2, null, this);
@@ -286,11 +292,21 @@ class field extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
         
+        //TODO: Set this to above the main character's head
         gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
         gameOver.visible = false;
 
         this.cameras.main.setBounds(0, 0, 2560, heightGame);
         this.cameras.main.startFollow(mainCharacter);
+
+        timerX = this.time.addEvent({
+            delay: 6000,
+            callback: startNextScene,
+            callbackScope: this,
+            loop: false,
+            repeat: 0,
+            paused: true,
+        });
         
     }
 
@@ -330,14 +346,6 @@ class field extends Phaser.Scene {
         
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
-        }  
-
-        //Start next scene when you hit the flag.
-        //TODO: Add timer so that we can see the flag actually move.
-        if (flag.state == 1){
-            this.scene.stop('field');
-            this.scene.start('castle');
-        }
-        
+        }     
     }
 }
