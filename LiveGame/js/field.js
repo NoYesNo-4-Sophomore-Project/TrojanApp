@@ -11,7 +11,7 @@ class field extends Phaser.Scene {
         this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 40, frameHeight: 32});
         this.load.spritesheet('bandit2','assets/Bandit2.png',{frameWidth: 36, frameHeight: 32});
         this.load.spritesheet('bandit3','assets/Bandit3.png',{frameWidth: 40, frameHeight: 32});
-        this.load.spritesheet('flag', 'assets/romanflag.png', {frameWidth: 32, frameHeight: 90});
+        this.load.spritesheet('flag', 'assets/SpartanFlag.png', {frameWidth: 32, frameHeight: 90});
     }
 
     create () {
