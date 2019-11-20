@@ -103,26 +103,6 @@ class field extends Phaser.Scene {
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
 
-        // this.anims.create({
-        //     key: 'bleft',
-        //     frames: this.anims.generateFrameNumbers('bandit', { start: 2, end: 5 }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // });
-
-        // this.anims.create({
-        //     key: 'bright',
-        //     frames: this.anims.generateFrameNumbers('bandit', {start: 2, end: 5}),
-        //     frameRate: 5,
-        //     repeat: -1
-        // });
-
-        // this.anims.create({
-        //     key: 'bturn',
-        //     frames: [ { key: 'bandit', frame: 0 } ],
-        //     frameRate: 20
-        // });
-
         this.anims.create({
             key: 'battack',
             frames: this.anims.generateFrameNumbers('bandit', {start: 4, end: 5}),

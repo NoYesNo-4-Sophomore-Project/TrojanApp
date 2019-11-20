@@ -26,6 +26,8 @@ var mainhp;
 var enemy;
 var enemy2;
 var enemy3;
+var guard1;
+var guard2;
 var flag;
 var cursors;
 var aKey;
