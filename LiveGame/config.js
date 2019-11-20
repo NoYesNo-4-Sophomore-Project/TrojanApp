@@ -31,3 +31,6 @@ var cursors;
 var aKey;
 var gameOver;
 var timerX;
+var background3;
+var horsey;
+var enemy4;
