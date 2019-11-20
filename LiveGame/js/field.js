@@ -28,7 +28,7 @@ class field extends Phaser.Scene {
         var heightGame = this.sys.canvas.height;
         var widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
-        this.background2.setDisplaySize(widthGame, heightGame);
+        this.background2.setDisplaySize(2560, heightGame);
         
 
         /* 
