@@ -9,14 +9,15 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 300},
-            debug: false
+            debug: true
         }
     },
     //Defuzzes characters
     pixelArt: true,
     //Insert scenes here
     // May need to use 'new' keyword
-    scene: [field, town, castle]  
+    scene: [field, town, castle] 
+    // field, town,  
 };
 
 // Need to attach any global variables here
@@ -28,6 +29,8 @@ var enemy2;
 var enemy3;
 var guard1;
 var guard2;
+var minoTaur
+var princess
 var flag;
 var cursors;
 var aKey;

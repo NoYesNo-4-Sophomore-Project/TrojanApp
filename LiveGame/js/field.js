@@ -109,6 +109,7 @@ class field extends Phaser.Scene {
             frameRate: 20,
         });
 
+        //TODO: Will want to see if we are able to move characters to later points in the stage
         // Bandit 2 character 
         enemy2 = this.physics.add.sprite(600, 450, 'bandit2');
 
@@ -272,8 +273,9 @@ class field extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
         
-        //TODO: Set this to above the main character's head
-        gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
+        //Position 'GAME OVER' such that it will always appear near the character
+        let get = mainCharacter.getTopLeft()
+        gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
         gameOver.visible = false;
 
         this.cameras.main.setBounds(0, 0, 2560, heightGame);
