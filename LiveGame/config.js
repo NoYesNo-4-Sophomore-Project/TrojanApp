@@ -16,7 +16,7 @@ var config = {
     pixelArt: true,
     //Insert scenes here
     // May need to use 'new' keyword
-    scene: [field, town, castle]  
+    scene: [town, castle]  
 };
 
 // Need to attach any global variables here
@@ -28,8 +28,11 @@ var enemy2;
 var enemy3;
 var guard1;
 var guard2;
+var guard3;
+var guard4;
 var flag;
 var cursors;
 var aKey;
 var gameOver;
 var timerX;
+var horsey;
