@@ -37,6 +37,8 @@ class field extends Phaser.Scene {
             Main character health
             Main character keyboard animation motions
         */
+
+        
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         
         mainCharacter.setCollideWorldBounds(true);

@@ -5,7 +5,7 @@ class town extends Phaser.Scene {
 
     preload () {
         this.load.image('background', 'assets/SiegeOfTroy.png');
-        this.load.image('Horse 2', 'assets/SiegeOfTroy.png');
+        this.load.image('horsey','assets/Horse 2 invisible background.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
         this.load.spritesheet('guard', 'assets/Guard.png', {frameWidth: 48, frameHeight: 48});
     }
@@ -27,8 +27,12 @@ class town extends Phaser.Scene {
             Main character inclusion
             Regains HP in new scene
         */
+         horsey = this.physics.add.image(2000, 300, 'horsey');
+         horsey.setCollideWorldBounds(true);
+         horsey.displayHeight = heightGameII * 0.8;
+         horsey.displayWidth = widthGameII * 0.5;
+
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
-        
         mainCharacter.setCollideWorldBounds(true);
         mainCharacter.displayHeight = heightGameII * 0.3;
         mainCharacter.displayWidth = widthGameII * 0.15;
