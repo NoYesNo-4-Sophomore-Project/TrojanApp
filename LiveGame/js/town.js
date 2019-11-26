@@ -32,8 +32,8 @@ class town extends Phaser.Scene {
         */
          horsey = this.physics.add.image(2000, 300, 'horsey');
          horsey.setCollideWorldBounds(true);
-         horsey.displayHeight = heightGameII * 0.8;
-         horsey.displayWidth = widthGameII * 0.5;
+         horsey.displayHeight = heightGameII * 0.6;
+         horsey.displayWidth = widthGameII * 0.3;
 
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         mainCharacter.setCollideWorldBounds(true);
@@ -46,7 +46,7 @@ class town extends Phaser.Scene {
         mainCharacter.setOffset(0, 0);
 
         mainCharacter.setDataEnabled();
-        mainCharacter.data.set('hp', 50);
+        mainCharacter.data.set('hp', 100000);
 
         this.anims.create({
             key: 'left',
@@ -186,11 +186,11 @@ class town extends Phaser.Scene {
                 else {
                     let dec = Phaser.Math.Between(1,2);
                     if (dec === 1){
-                        guard2.x += 5;
+                        guard2.x += 60;
                         guard2.play('g2attack');
                     }
                     else {
-                        guard2.x -= 5;
+                        guard2.x -= 60;
                         guard2.play('g2attack');
                     }
                 }
@@ -210,12 +210,12 @@ class town extends Phaser.Scene {
                 else {
                     let dec = Phaser.Math.Between(1,2);
                     if (dec === 1){
-                        guard3.y += 5;
+                        guard3.x += 60;
                         guard3.play('g3attack');
                         
                     }
                     else {
-                        guard3.y -= 10;
+                        guard3.x -= 60;
                         guard3.play('g3attack');
                     }
                 }
@@ -225,7 +225,8 @@ class town extends Phaser.Scene {
                     if (aKey.isDown){
                         let newhp = guard4.data.get('hp');
                         if (newhp == 0){
-                            guard4.destroy();
+                            guard4.destroy(); //cant go into horse until last guard is defeated
+                            this.physics.add.overlap(mainCharacter, horsey, goHorsey, null, this);
                         }
                         else {
                         newhp -= 2;
@@ -235,25 +236,37 @@ class town extends Phaser.Scene {
                     else {
                         let dec = Phaser.Math.Between(1,2);
                         if (dec === 1){
-                            guard4.y += 5;
+                            guard4.x += 60;
                             guard4.play('g4attack');
                             mainhp = mainCharacter.data.get('hp');
                             mainhp -= 2;
                             mainCharacter.data.set('hp', mainhp);
                         }
                         else {
-                            guard4.y -= 10;
+                            guard4.x -= 60;
                             guard4.play('g4attack');
                         }
                     }
                 };
             
-
+               
            
         /* 
             Extras
             Key controls 
         */
+        function goHorsey () {
+        mainCharacter.setVisible(false);
+        //mainCharacter.setVelocityX(200);
+        //while (horsey.x < 10000)
+            //horsey.x+=0.1;
+        timerY.paused = false;
+    };
+
+    const startNextScene = () => {
+        this.scene.stop('town');
+        this.scene.start('castle');
+    }
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
@@ -262,12 +275,21 @@ class town extends Phaser.Scene {
         this.physics.add.overlap(mainCharacter, guard2, hpDecrease2, null, this);
         this.physics.add.overlap(mainCharacter, guard3, hpDecrease3, null, this);
         this.physics.add.overlap(mainCharacter, guard4, hpDecrease4, null, this);
-
+        
         gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
         gameOver.visible = false;
 
         this.cameras.main.setBounds(0, 0, 2560, heightGameII);
         this.cameras.main.startFollow(mainCharacter);
+
+        timerY = this.time.addEvent({
+            delay: 6000,
+            callback: startNextScene,
+            callbackScope: this,
+            loop: false,
+            repeat: 0,
+            paused: true,
+        });
 
     }
 
@@ -276,7 +298,7 @@ class town extends Phaser.Scene {
         if (mainhp <= 0){
             this.physics.pause();
             mainCharacter.setTint(0xff0000);
-            gameOver.visible = true;
+            gameOver.setVisible = true;
             
         }
 

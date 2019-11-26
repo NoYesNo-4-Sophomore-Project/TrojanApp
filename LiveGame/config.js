@@ -36,3 +36,4 @@ var aKey;
 var gameOver;
 var timerX;
 var horsey;
+var timerY;
