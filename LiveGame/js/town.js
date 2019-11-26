@@ -30,7 +30,7 @@ class town extends Phaser.Scene {
             Main character inclusion
             Regains HP in new scene
         */
-         horsey = this.physics.add.image(2000, 300, 'horsey');
+         horsey = this.physics.add.image(2000, 300, 'horsey').setInteractive();
          horsey.setCollideWorldBounds(true);
          horsey.displayHeight = heightGameII * 0.6;
          horsey.displayWidth = widthGameII * 0.3;
