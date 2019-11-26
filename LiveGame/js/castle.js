@@ -71,7 +71,7 @@ class castle extends Phaser.Scene {
             Set Minotaur size
             Set Minotaur bounds
             Set Minotaur health
-            
+            Minotaur animation       
         */
 
        minoTaur = this.physics.add.sprite(500, 450, 'minotaur');
@@ -92,7 +92,7 @@ class castle extends Phaser.Scene {
         frames: this.anims.generateFrameNumbers('minotaur', {start: 5, end: 4}),
         frameRate: 5,
         });
-        
+
        /*
             Princess inclusion
             Set princess size
@@ -149,14 +149,14 @@ class castle extends Phaser.Scene {
 
         function winner () {
             princess.play('princessInteraction', true);
+            gameWinner.visible = true;
         };
 
        /*
             Extras
             Cursor keys
             Game over text
-            Set combat function
-            Timer
+            Game winner text 
        */
 
         this.physics.add.overlap(mainCharacter, minoTaur, hpDecrease, null, this);
@@ -170,6 +170,8 @@ class castle extends Phaser.Scene {
         gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
         gameOver.visible = false;
 
+        var gameWinner = this.add.text((get.x + 50), (get.y + 50), "WINNER! You saved the princess", {fontFamilt: 'Arial', fontSize: 60, color: '#65A3E1'});
+        gameWinner.visible = false;
     }
 
     update () {
