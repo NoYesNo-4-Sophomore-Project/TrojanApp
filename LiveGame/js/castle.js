@@ -2,7 +2,6 @@ class castle extends Phaser.Scene {
     constructor () {
         super({key: 'castle'});
     }
-
     preload () {
         this.load.image('castle', 'assets/FinalBoss.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
@@ -86,8 +85,14 @@ class castle extends Phaser.Scene {
        minoTaur.setOffset(20, 0);
 
        minoTaur.setDataEnabled();
-       minoTaur.data.set('hp', 80);
+       minoTaur.data.set('hp', 100);
 
+       this.anims.create({
+        key: 'minoTaurAttack',
+        frames: this.anims.generateFrameNumbers('minotaur', {start: 5, end: 4}),
+        frameRate: 5,
+        });
+        
        /*
             Princess inclusion
             Set princess size
@@ -120,19 +125,38 @@ class castle extends Phaser.Scene {
         */
 
         function hpDecrease () {
-
-        }
+            if (aKey.isDown){
+                let newhp = minoTaur.data.get('hp');
+                if (newhp <= 0){
+                    minoTaur.destroy();
+                }
+                else {
+                    newhp -= 2;
+                    minoTaur.data.set('hp', newhp);
+                }
+            }
+            else if (cursors.up.isDown || !mainCharacter.body.onFloor()){
+                minoTaur.setVelocityX(-300);
+                minoTaur.play('minoTaurAttack', false);
+            }
+            else {
+                minoTaur.flipX = true;
+                mainhp = mainCharacter.data.get('hp');
+                mainhp -= 0.5;
+                mainCharacter.data.set('hp', mainhp);
+            }
+        };
 
         function winner () {
             princess.play('princessInteraction', true);
-
-        }
+        };
 
        /*
             Extras
             Cursor keys
             Game over text
             Set combat function
+            Timer
        */
 
         this.physics.add.overlap(mainCharacter, minoTaur, hpDecrease, null, this);
@@ -178,7 +202,7 @@ class castle extends Phaser.Scene {
         }
         
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
-            mainCharacter.setVelocityY(-200);
+            mainCharacter.setVelocityY(-400);
         }  
 
     }
