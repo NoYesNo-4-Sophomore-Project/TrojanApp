@@ -12,12 +12,25 @@ var config = {
             debug: false
         }
     },
-    scene: [
-        //Insert scenes here
-        // May need to use 'new' keyword
-        field, 
-        // castle, town
-        ]  
+    //Defuzzes characters
+    pixelArt: true,
+    //Insert scenes here
+    // May need to use 'new' keyword
+    scene: [field, town, castle]  
 };
 
+// Need to attach any global variables here
 var game = new Phaser.Game(config);
+var mainCharacter;
+var mainhp;
+var enemy;
+var enemy2;
+var enemy3;
+var flag;
+var cursors;
+var aKey;
+var gameOver;
+var timerX;
+var background3;
+var horsey;
+var enemy4;
