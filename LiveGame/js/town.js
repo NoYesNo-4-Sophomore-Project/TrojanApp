@@ -25,7 +25,9 @@ class town extends Phaser.Scene {
         var heightGameII = this.sys.canvas.height;
         var widthGameII = this.sys.canvas.width;
         this.background.setDisplaySize(widthGameII, heightGameII);
-
+        this.pointer = this.input.activePointer;
+        
+       
         /*
             Main character inclusion
             Regains HP in new scene
@@ -294,7 +296,7 @@ class town extends Phaser.Scene {
     }
 
     update () {
-        //If HP drops to 0, it's game over
+      // If HP drops to 0, it's game over
         if (mainhp <= 0){
             this.physics.pause();
             mainCharacter.setTint(0xff0000);
@@ -325,7 +327,11 @@ class town extends Phaser.Scene {
         
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
-        }     
+        }    
+        if (this.input.activePointer.isDown){
+            mainCharacter.setVelocityX(160);
+            mainCharacter.anims.play('right', true);
+        }
 
     }
 }
