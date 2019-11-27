@@ -29,6 +29,7 @@ class field extends Phaser.Scene {
         var widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
         this.background2.setDisplaySize(2560, heightGame);
+        this.pointer = this.input.activePointer;
         
 
         /* 
@@ -330,6 +331,10 @@ class field extends Phaser.Scene {
         
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
-        }     
+        }  
+        if (this.input.activePointer.isDown){
+            mainCharacter.setVelocityX(160);
+            mainCharacter.anims.play('right', true);
+        }   
     }
 }
