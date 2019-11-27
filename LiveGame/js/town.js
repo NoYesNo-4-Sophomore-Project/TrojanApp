@@ -261,7 +261,7 @@ class town extends Phaser.Scene {
         mainCharacter.setVisible(false);
         //mainCharacter.setVelocityX(200);
         //while (horsey.x < 10000)
-            //horsey.x+=0.1;
+        //horsey.x+=0.1;
         timerY.paused = false;
     };
 
