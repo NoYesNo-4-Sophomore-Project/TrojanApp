@@ -16,7 +16,7 @@ var config = {
     pixelArt: true,
     //Insert scenes here
     // May need to use 'new' keyword
-    scene: [town, castle]  
+    scene: [field, town, castle]  
 };
 
 // Need to attach any global variables here
