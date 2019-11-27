@@ -14,6 +14,65 @@ class town extends Phaser.Scene {
     }
 
     create () {
+        this.background3 = this.add.tileSprite(0, 0, widthGame, heightGame, 'siege');
+        this.background3.setOrigin(0, 0);
+        this.background3.setScrollFactor(1);
+        var heightGame = this.sys.canvas.height;
+        var widthGame = this.sys.canvas.width;
+        this.background3.setDisplaySize(widthGame, heightGame);
+
+        mainCharacter = this.physics.add.sprite(100, 450, 'main');
+        
+        mainCharacter.setCollideWorldBounds(true);
+        mainCharacter.displayHeight = heightGame * 0.3;
+        mainCharacter.displayWidth = widthGame * 0.15;
+        mainCharacter.setBounce(0.2);
+        
+        var b = new Phaser.Geom.Rectangle(100, 450, 32, 48);
+        mainCharacter.setSize(b.width, b.height);
+        mainCharacter.setOffset(0, 0);
+
+        mainCharacter.setDataEnabled();
+        mainCharacter.data.set('hp', 100);
+        
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('main', { start: 2, end: 5 }),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('main', {start: 2, end: 5}),
+            frameRate: 5,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'main', frame: 0 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers('main', {start: 1, end: 1}),
+            frameRate: 5,
+        });
+
+    
+
+    var c = new Phaser.Geom.Rectangle(500, 450, 28, 32);
+
+    enemy4 = this.physics.add.sprite(500, 450, 'guard');
+
+    enemy4.setCollideWorldBounds(true);
+    enemy4.displayHeight = heightGame * 0.3;
+    enemy4.displayWidth = widthGame * 0.15;
+    enemy4.setSize(c.width, c.height);
+    enemy4.setOffset(10, 0);
 
         /*
             Background primary set-up, although not as a tileSprite
@@ -293,8 +352,29 @@ class town extends Phaser.Scene {
             paused: true,
         });
 
-    }
+    this.physics.add.overlap(mainCharacter, enemy4, hpDecrease, null, this);
+    this.physics.add.overlap(mainCharacter, flag, flagDrop, null, this);
+    cursors = this.input.keyboard.createCursorKeys();
+        aKey = this.input.keyboard.addKey('A');
+        
+        //TODO: Set this to above the main character's head
+        gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
+        gameOver.visible = false;
 
+        this.cameras.main.setBounds(0, 0, 2560, heightGame);
+        this.cameras.main.startFollow(mainCharacter);
+
+        timerX = this.time.addEvent({
+            delay: 6000,
+            callback: startNextScene,
+            callbackScope: this,
+            loop: false,
+            repeat: 0,
+            paused: true,
+        });
+        
+    }
+    
     update () {
       // If HP drops to 0, it's game over
         if (mainhp <= 0){
@@ -333,5 +413,30 @@ class town extends Phaser.Scene {
             mainCharacter.anims.play('right', true);
         }
 
+        //Controls motion when certain keys are pressed down
+        if (cursors.left.isDown)
+        {
+            mainCharacter.setVelocityX(-160);
+            mainCharacter.anims.play('left', true);
+        }
+        else if (cursors.right.isDown)
+        {
+            mainCharacter.setVelocityX(160);
+            mainCharacter.anims.play('right', true);
+        }
+        else if (aKey.isDown){
+            mainCharacter.setVelocityX(0);
+            mainCharacter.anims.play('attack'); 
+        }
+        else
+        {
+            mainCharacter.setVelocityX(0);
+            mainCharacter.anims.play('turn');
+        }
+        
+        if (cursors.up.isDown && mainCharacter.body.onFloor()){
+            mainCharacter.setVelocityY(-200);
+        }     
     }
+
 }
