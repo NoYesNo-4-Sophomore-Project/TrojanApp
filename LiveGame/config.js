@@ -29,8 +29,8 @@ var enemy2;
 var enemy3;
 var guard1;
 var guard2;
-var minoTaur
-var princess
+var minoTaur;
+var princess;
 var flag;
 var cursors;
 var aKey;
