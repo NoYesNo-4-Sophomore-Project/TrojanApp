@@ -28,7 +28,7 @@ class field extends Phaser.Scene {
         var heightGame = this.sys.canvas.height;
         var widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
-        this.background2.setDisplaySize(widthGame, heightGame);
+        this.background2.setDisplaySize(2560, heightGame);
         
 
         /* 
@@ -37,6 +37,8 @@ class field extends Phaser.Scene {
             Main character health
             Main character keyboard animation motions
         */
+
+        
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         
         mainCharacter.setCollideWorldBounds(true);
@@ -102,26 +104,6 @@ class field extends Phaser.Scene {
 
         enemy.setBounce(0);
         enemy.body.setImmovable(true);
-
-        // this.anims.create({
-        //     key: 'bleft',
-        //     frames: this.anims.generateFrameNumbers('bandit', { start: 2, end: 5 }),
-        //     frameRate: 5,
-        //     repeat: -1
-        // });
-
-        // this.anims.create({
-        //     key: 'bright',
-        //     frames: this.anims.generateFrameNumbers('bandit', {start: 2, end: 5}),
-        //     frameRate: 5,
-        //     repeat: -1
-        // });
-
-        // this.anims.create({
-        //     key: 'bturn',
-        //     frames: [ { key: 'bandit', frame: 0 } ],
-        //     frameRate: 20
-        // });
 
         this.anims.create({
             key: 'battack',

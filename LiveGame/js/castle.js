@@ -4,7 +4,7 @@ class castle extends Phaser.Scene {
     }
 
     preload () {
-        this.load.image('sky', '../assets/sky.png');
+        this.load.image('sky', '../assets/sky.png'); // This needs to be the FinalBoss.png
         this.load.spritesheet('Minotaur','assets/Minotaur.png', {frameWidth: 95, frameHeight: 85});
     }
 
