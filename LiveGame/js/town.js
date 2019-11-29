@@ -66,14 +66,6 @@ class town extends Phaser.Scene {
 
     var c = new Phaser.Geom.Rectangle(500, 450, 28, 32);
 
-    enemy4 = this.physics.add.sprite(500, 450, 'guard');
-
-    enemy4.setCollideWorldBounds(true);
-    enemy4.displayHeight = heightGame * 0.3;
-    enemy4.displayWidth = widthGame * 0.15;
-    enemy4.setSize(c.width, c.height);
-    enemy4.setOffset(10, 0);
-
         /*
             Background primary set-up, although not as a tileSprite
             Needs to be fixed such that everything is not smooshed together
@@ -352,9 +344,7 @@ class town extends Phaser.Scene {
             paused: true,
         });
 
-    this.physics.add.overlap(mainCharacter, enemy4, hpDecrease, null, this);
-    this.physics.add.overlap(mainCharacter, flag, flagDrop, null, this);
-    cursors = this.input.keyboard.createCursorKeys();
+        cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
         
         //TODO: Set this to above the main character's head
@@ -412,31 +402,6 @@ class town extends Phaser.Scene {
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
         }
-
-        //Controls motion when certain keys are pressed down
-        if (cursors.left.isDown)
-        {
-            mainCharacter.setVelocityX(-160);
-            mainCharacter.anims.play('left', true);
-        }
-        else if (cursors.right.isDown)
-        {
-            mainCharacter.setVelocityX(160);
-            mainCharacter.anims.play('right', true);
-        }
-        else if (aKey.isDown){
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack'); 
-        }
-        else
-        {
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('turn');
-        }
-        
-        if (cursors.up.isDown && mainCharacter.body.onFloor()){
-            mainCharacter.setVelocityY(-200);
-        }     
     }
 
 }
