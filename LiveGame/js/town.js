@@ -4,7 +4,7 @@ class town extends Phaser.Scene {
     }
 
     preload () {
-        this.load.image('background', 'assets/SiegeOfTroy.png');
+        this.load.image('background', 'assets/2999SeigeofTroy2.png');
         this.load.image('horsey','assets/Horse 2 invisible background.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
         this.load.spritesheet('guard1', 'assets/Guard.png', {frameWidth: 48, frameHeight: 48});
@@ -70,23 +70,32 @@ class town extends Phaser.Scene {
             Background primary set-up, although not as a tileSprite
             Needs to be fixed such that everything is not smooshed together
         */
-        this.background = this.add.tileSprite(0, 0, widthGameII, heightGameII, 'background');
-        this.background.setOrigin(0, 0);
-        this.background.setScrollFactor(0);
+        this.backgroundA = this.add.tileSprite(0, 0, widthGameII, heightGameII, 'background');
+        this.backgroundA.setOrigin(0, 0);
+        this.backgroundA.setScrollFactor(0);
         var heightGameII = this.sys.canvas.height;
         var widthGameII = this.sys.canvas.width;
-        this.background.setDisplaySize(widthGameII, heightGameII);
-        this.pointer = this.input.activePointer;
+        this.backgroundA.setDisplaySize(widthGameII, heightGameII);
         
+        /*
+            Pointer creation
+        */
+        this.pointer = this.input.activePointer;
+
+        /*
+            Horse inclusion
+        */
        
+         horsey = this.physics.add.image(2000, 300, 'horsey');
+         horsey.setInteractive();
+         horsey.setCollideWorldBounds(true);
+         horsey.displayHeight = heightGameII * 0.6;
+         horsey.displayWidth = widthGameII * 0.3;
+
         /*
             Main character inclusion
             Regains HP in new scene
         */
-         horsey = this.physics.add.image(2000, 300, 'horsey').setInteractive();
-         horsey.setCollideWorldBounds(true);
-         horsey.displayHeight = heightGameII * 0.6;
-         horsey.displayWidth = widthGameII * 0.3;
 
         mainCharacter = this.physics.add.sprite(100, 450, 'main');
         mainCharacter.setCollideWorldBounds(true);
@@ -130,196 +139,193 @@ class town extends Phaser.Scene {
         /*
             Guard characters
         */
-            guard1 = this.physics.add.sprite(500, 450, 'guard1');
-            guard2 = this.physics.add.sprite(700, 450, 'guard2');
-            guard3 = this.physics.add.sprite(900, 450, 'guard3');
-            guard4 = this.physics.add.sprite(1100, 450, 'guard4');
 
-            guard1.setCollideWorldBounds(true);
-            guard2.setCollideWorldBounds(true);
-            guard3.setCollideWorldBounds(true);
-            guard4.setCollideWorldBounds(true);
+        guard1 = this.physics.add.sprite(500, 450, 'guard1');
+        guard2 = this.physics.add.sprite(700, 450, 'guard2');
+        guard3 = this.physics.add.sprite(900, 450, 'guard3');
+        guard4 = this.physics.add.sprite(1100, 450, 'guard4');
 
-            guard1.displayHeight = heightGameII * 0.35;
-            guard1.displayWidth = widthGameII * 0.18;
-            guard2.displayHeight = heightGameII * 0.35;
-            guard2.displayWidth = widthGameII * 0.18;
-            guard3.displayHeight = heightGameII * 0.35;
-            guard3.displayWidth = widthGameII * 0.18;
-            guard4.displayHeight = heightGameII * 0.35;
-            guard4.displayWidth = widthGameII * 0.18;
+        guard1.setCollideWorldBounds(true);
+        guard2.setCollideWorldBounds(true);
+        guard3.setCollideWorldBounds(true);
+        guard4.setCollideWorldBounds(true);
 
-            var b = new Phaser.Geom.Rectangle(100, 450, 24, 48);
-            guard1.setSize(b.width, b.height);
-            guard2.setSize(b.width, b.height);
-            guard3.setSize(b.width, b.height);
-            guard4.setSize(b.width, b.height);
-            guard1.setOffset(6, 0);
-            guard2.setOffset(6, 0);
-            guard3.setOffset(6, 0);
-            guard4.setOffset(6, 0);
+        guard1.displayHeight = heightGameII * 0.35;
+        guard1.displayWidth = widthGameII * 0.18;
+        guard2.displayHeight = heightGameII * 0.35;
+        guard2.displayWidth = widthGameII * 0.18;
+        guard3.displayHeight = heightGameII * 0.35;
+        guard3.displayWidth = widthGameII * 0.18;
+        guard4.displayHeight = heightGameII * 0.35;
+        guard4.displayWidth = widthGameII * 0.18;
 
-            guard1.setDataEnabled();
-            guard2.setDataEnabled();
-            guard3.setDataEnabled();
-            guard4.setDataEnabled();
+        var b = new Phaser.Geom.Rectangle(100, 450, 24, 48);
+        guard1.setSize(b.width, b.height);
+        guard2.setSize(b.width, b.height);
+        guard3.setSize(b.width, b.height);
+        guard4.setSize(b.width, b.height);
+        guard1.setOffset(6, 0);
+        guard2.setOffset(6, 0);
+        guard3.setOffset(6, 0);
+        guard4.setOffset(6, 0);
 
-            guard1.data.set('hp', 70);
-            guard2.data.set('hp', 70);
-            guard3.data.set('hp', 70);
-            guard4.data.set('hp', 70);
+        guard1.setDataEnabled();
+        guard2.setDataEnabled();
+        guard3.setDataEnabled();
+        guard4.setDataEnabled();
 
-            this.anims.create({
-                key: 'g1attack',
-                frames: this.anims.generateFrameNumbers('guard1', {start: 2, end: 4}),
-                frameRate: 10,
-            });
+        guard1.data.set('hp', 70);
+        guard2.data.set('hp', 70);
+        guard3.data.set('hp', 70);
+        guard4.data.set('hp', 70);
 
-            this.anims.create({
-                key: 'g2attack',
-                frames: this.anims.generateFrameNumbers('guard2', {start: 2, end: 4}),
-                frameRate: 10,
-            });
+        this.anims.create({
+            key: 'g1attack',
+            frames: this.anims.generateFrameNumbers('guard1', {start: 2, end: 4}),
+            frameRate: 10,
+        });
 
-            this.anims.create({
-                key: 'g3attack',
-                frames: this.anims.generateFrameNumbers('guard3', {start: 2, end: 4}),
-                frameRate: 10,
-            });
+        this.anims.create({
+            key: 'g2attack',
+            frames: this.anims.generateFrameNumbers('guard2', {start: 2, end: 4}),
+            frameRate: 10,
+        });
 
-            this.anims.create({
-                key: 'g4attack',
-                frames: this.anims.generateFrameNumbers('guard4', {start: 2, end: 4}),
-                frameRate: 10,
-            });
+        this.anims.create({
+            key: 'g3attack',
+            frames: this.anims.generateFrameNumbers('guard3', {start: 2, end: 4}),
+            frameRate: 10,
+        });
 
-            function hpDecrease () {
-                if (aKey.isDown){
-                    let newhp = guard1.data.get('hp');
-                    if (newhp <= 0){
-                       guard1.destroy();
+        this.anims.create({
+            key: 'g4attack',
+            frames: this.anims.generateFrameNumbers('guard4', {start: 2, end: 4}),
+            frameRate: 10,
+        });
+
+        function hpDecrease () {
+            if (aKey.isDown){
+                let newhp = guard1.data.get('hp');
+                if (newhp <= 0){
+                    guard1.destroy();
+                
+                }
+                else {
+                newhp -= 2;
+                guard1.data.set('hp', newhp);
+                }
+            }
+            else {
+                let dec = Phaser.Math.Between(1,2);
+                if (dec === 1){
+                    guard1.x += 75;
+                    guard1.play('g1attack');
+                    mainhp = mainCharacter.data.get('hp');
+                    mainhp -= 1;
+                    mainCharacter.data.set('hp', mainhp);
+                }
+                else {
+                    guard1.x -= 75;
+                    guard1.play('g1attack');
+                    mainhp = mainCharacter.data.get('hp');
+                    mainhp -= 1;
+                    mainCharacter.data.set('hp', mainhp);
+                }
+            }
+        };
+
+        function hpDecrease2 () {
+            if (aKey.isDown){
+                let newhp = guard2.data.get('hp');
+                if (newhp <= 0){
+                    guard2.destroy();
                     
-                    }
-                    else {
-                    newhp -= 2;
-                    guard1.data.set('hp', newhp);
-                    }
                 }
                 else {
-                    let dec = Phaser.Math.Between(1,2);
-                    if (dec === 1){
-                        guard1.x += 75;
-                        guard1.play('g1attack');
-                        mainhp = mainCharacter.data.get('hp');
-                        mainhp -= 1;
-                        mainCharacter.data.set('hp', mainhp);
-                    }
-                    else {
-                        guard1.x -= 75;
-                        guard1.play('g1attack');
-                        mainhp = mainCharacter.data.get('hp');
-                        mainhp -= 1;
-                        mainCharacter.data.set('hp', mainhp);
-                    }
+                newhp -= 2;
+                guard2.data.set('hp', newhp);
                 }
-            };
-    
-            function hpDecrease2 () {
-                if (aKey.isDown){
-                    let newhp = guard2.data.get('hp');
-                    if (newhp <= 0){
-                        guard2.destroy();
-                        
-                    }
-                    else {
-                    newhp -= 2;
-                    guard2.data.set('hp', newhp);
-                    }
+            }
+            else {
+                let dec = Phaser.Math.Between(1,2);
+                if (dec === 1){
+                    guard2.x += 60;
+                    guard2.play('g2attack');
                 }
                 else {
-                    let dec = Phaser.Math.Between(1,2);
-                    if (dec === 1){
-                        guard2.x += 60;
-                        guard2.play('g2attack');
-                    }
-                    else {
-                        guard2.x -= 60;
-                        guard2.play('g2attack');
-                    }
+                    guard2.x -= 60;
+                    guard2.play('g2attack');
                 }
-            };
-    
-            function hpDecrease3 () {
-                if (aKey.isDown){
-                    let newhp = guard3.data.get('hp');
-                    if (newhp == 0){
-                        guard3.destroy();
-                    }
-                    else {
-                    newhp -= 2;
-                    guard3.data.set('hp', newhp);
-                    }
-                }
-                else {
-                    let dec = Phaser.Math.Between(1,2);
-                    if (dec === 1){
-                        guard3.x += 60;
-                        guard3.play('g3attack');
-                        
-                    }
-                    else {
-                        guard3.x -= 60;
-                        guard3.play('g3attack');
-                    }
-                }
-            };
+            }
+        };
 
-                function hpDecrease4 () {
-                    if (aKey.isDown){
-                        let newhp = guard4.data.get('hp');
-                        if (newhp == 0){
-                            guard4.destroy(); //cant go into horse until last guard is defeated
-                            this.physics.add.overlap(mainCharacter, horsey, goHorsey, null, this);
-                        }
-                        else {
-                        newhp -= 2;
-                        guard4.data.set('hp', newhp);
-                        }
-                    }
-                    else {
-                        let dec = Phaser.Math.Between(1,2);
-                        if (dec === 1){
-                            guard4.x += 60;
-                            guard4.play('g4attack');
-                            mainhp = mainCharacter.data.get('hp');
-                            mainhp -= 2;
-                            mainCharacter.data.set('hp', mainhp);
-                        }
-                        else {
-                            guard4.x -= 60;
-                            guard4.play('g4attack');
-                        }
-                    }
-                };
-            
-               
-           
+        function hpDecrease3 () {
+            if (aKey.isDown){
+                let newhp = guard3.data.get('hp');
+                if (newhp == 0){
+                    guard3.destroy();
+                }
+                else {
+                newhp -= 2;
+                guard3.data.set('hp', newhp);
+                }
+            }
+            else {
+                let dec = Phaser.Math.Between(1,2);
+                if (dec === 1){
+                    guard3.x += 60;
+                    guard3.play('g3attack');
+                    
+                }
+                else {
+                    guard3.x -= 60;
+                    guard3.play('g3attack');
+                }
+            }
+        };
+
+        function hpDecrease4 () {
+            if (aKey.isDown){
+                let newhp = guard4.data.get('hp');
+                if (newhp == 0){
+                    guard4.destroy(); //cant go into horse until last guard is defeated
+                    this.physics.add.overlap(mainCharacter, horsey, goHorsey, null, this);
+                }
+                else {
+                newhp -= 2;
+                guard4.data.set('hp', newhp);
+                }
+            }
+            else {
+                let dec = Phaser.Math.Between(1,2);
+                if (dec === 1){
+                    guard4.x += 60;
+                    guard4.play('g4attack');
+                    mainhp = mainCharacter.data.get('hp');
+                    mainhp -= 2;
+                    mainCharacter.data.set('hp', mainhp);
+                }
+                else {
+                    guard4.x -= 60;
+                    guard4.play('g4attack');
+                }
+            }
+        };
+                
         /* 
             Extras
             Key controls 
         */
-        function goHorsey () {
-        mainCharacter.setVisible(false);
-        //mainCharacter.setVelocityX(200);
-        //while (horsey.x < 10000)
-        //horsey.x+=0.1;
-        timerY.paused = false;
-    };
 
-    const startNextScene = () => {
-        this.scene.stop('town');
-        this.scene.start('castle');
-    }
+        function goHorsey () {
+            mainCharacter.setVisible(false);
+            timerY.paused = false;
+        };
+
+        const startNextScene = () => {
+            this.scene.stop('town');
+            this.scene.start('castle');
+        }
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
@@ -398,10 +404,12 @@ class town extends Phaser.Scene {
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
         }    
+
         if (this.input.activePointer.isDown){
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
         }
+             
     }
 
 }

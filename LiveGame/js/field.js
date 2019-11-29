@@ -29,6 +29,7 @@ class field extends Phaser.Scene {
         var widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
         this.background2.setDisplaySize(2560, heightGame);
+        this.pointer = this.input.activePointer;
         
 
         /* 
@@ -275,7 +276,6 @@ class field extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
         
-        //Position 'GAME OVER' such that it will always appear near the character
         let get = mainCharacter.getTopLeft()
         gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
         gameOver.visible = false;
@@ -293,11 +293,6 @@ class field extends Phaser.Scene {
         });
         
     }
-
-    //I don't think this does anything
-    // newMethod(camera) {
-    //     return new camera();
-    // }
 
     update () {
         //Game over function
@@ -330,6 +325,11 @@ class field extends Phaser.Scene {
         
         if (cursors.up.isDown && mainCharacter.body.onFloor()){
             mainCharacter.setVelocityY(-200);
-        }     
+        } 
+
+        if (this.input.activePointer.isDown){
+            mainCharacter.setVelocityX(160);
+            mainCharacter.anims.play('right', true);
+        }   
     }
 }
