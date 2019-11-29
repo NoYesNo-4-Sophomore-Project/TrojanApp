@@ -9,7 +9,7 @@ class field extends Phaser.Scene {
         this.load.image('fence', 'assets/RoadOnly.png');
         this.load.spritesheet('main', 'assets/Main.png', { frameWidth: 48, frameHeight: 48});
         this.load.spritesheet('bandit', 'assets/Bandit.png', {frameWidth: 40, frameHeight: 32});
-        this.load.spritesheet('bandit2','assets/Bandit2.png',{frameWidth: 36, frameHeight: 32});
+        this.load.spritesheet('bandit2','assets/Bandit2.png',{frameWidth: 40, frameHeight: 32});
         this.load.spritesheet('bandit3','assets/Bandit3.png',{frameWidth: 40, frameHeight: 32});
         this.load.spritesheet('flag', 'assets/SpartanFlag.png', {frameWidth: 32, frameHeight: 90});
     }
@@ -109,6 +109,18 @@ class field extends Phaser.Scene {
         this.anims.create({
             key: 'battack',
             frames: this.anims.generateFrameNumbers('bandit', {start: 4, end: 5}),
+            frameRate: 20,
+        });
+
+        this.anims.create({
+            key: 'b2attack',
+            frames: this.anims.generateFrameNumbers('bandit2', {start: 4, end: 5}),
+            frameRate: 20,
+        });
+
+        this.anims.create({
+            key: 'b3attack',
+            frames: this.anims.generateFrameNumbers('bandit3', {start: 4, end: 5}),
             frameRate: 20,
         });
 
@@ -219,9 +231,11 @@ class field extends Phaser.Scene {
                 let dec = Phaser.Math.Between(1,2);
                 if (dec === 1){
                     enemy2.x += 5;
+                    enemy2.play('b2attack');
                 }
                 else {
                     enemy2.x -= 5;
+                    enemy2.play('b2attack');
                 }
             }
         };
@@ -241,12 +255,14 @@ class field extends Phaser.Scene {
                 let dec = Phaser.Math.Between(1,2);
                 if (dec === 1){
                     enemy3.y += 5;
+                    enemy3.play('b3attack');
                     mainhp = mainCharacter.data.get('hp');
                     mainhp -= 2;
                     mainCharacter.data.set('hp', mainhp);
                 }
                 else {
                     enemy3.y -= 10;
+                    enemy3.play('b3attack');
                 }
             }
         };
