@@ -72,10 +72,10 @@ class town extends Phaser.Scene {
         */
         this.backgroundA = this.add.tileSprite(0, 0, widthGameII, heightGameII, 'background');
         this.backgroundA.setOrigin(0, 0);
-        this.backgroundA.setScrollFactor(0);
+        this.backgroundA.setScrollFactor(1);
         var heightGameII = this.sys.canvas.height;
         var widthGameII = this.sys.canvas.width;
-        this.backgroundA.setDisplaySize(widthGameII, heightGameII);
+        this.backgroundA.setDisplaySize(2560, heightGameII);
         
         /*
             Pointer creation
