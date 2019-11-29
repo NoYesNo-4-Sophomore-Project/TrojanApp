@@ -126,6 +126,7 @@ class castle extends Phaser.Scene {
 
         function hpDecrease () {
             if (aKey.isDown){
+                castletext.setVisible(false);
                 let newhp = minoTaur.data.get('hp');
                 if (newhp <= 0){
                     minoTaur.destroy();
@@ -159,9 +160,11 @@ class castle extends Phaser.Scene {
             Game winner text 
        */
 
+        castletext = this.add.text((100), (100), "You made it inside the castle!\nNow defeat the mighty minotaur and save the princess!", 
+       {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+
         this.physics.add.overlap(mainCharacter, minoTaur, hpDecrease, null, this);
         this.physics.add.collider(mainCharacter, princess, winner, null, this);
-
 
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');

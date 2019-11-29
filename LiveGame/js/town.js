@@ -108,7 +108,7 @@ class town extends Phaser.Scene {
         mainCharacter.setOffset(0, 0);
 
         mainCharacter.setDataEnabled();
-        mainCharacter.data.set('hp', 100000);
+        mainCharacter.data.set('hp', 100);
 
         this.anims.create({
             key: 'left',
@@ -208,7 +208,7 @@ class town extends Phaser.Scene {
                 let newhp = guard1.data.get('hp');
                 if (newhp <= 0){
                     guard1.destroy();
-                
+                    fieldtext.setVisible(false);
                 }
                 else {
                 newhp -= 2;
@@ -330,6 +330,9 @@ class town extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
 
+        fieldtext = this.add.text((100), (100), "You defeated the bandits!\nNow you must defeat the guards\nand sneak into the castle inside the trojan horse!", 
+        {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+
         this.physics.add.overlap(mainCharacter, guard1, hpDecrease, null, this);
         this.physics.add.overlap(mainCharacter, guard2, hpDecrease2, null, this);
         this.physics.add.overlap(mainCharacter, guard3, hpDecrease3, null, this);
@@ -374,6 +377,7 @@ class town extends Phaser.Scene {
     update () {
       // If HP drops to 0, it's game over
         if (mainhp <= 0){
+            fieldtext.setVisible(false);
             this.physics.pause();
             mainCharacter.setTint(0xff0000);
             gameOver.setVisible = true;

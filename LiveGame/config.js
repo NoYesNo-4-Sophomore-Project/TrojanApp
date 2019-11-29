@@ -16,7 +16,7 @@ var config = {
     pixelArt: true,
     //Insert scenes here
     // May need to use 'new' keyword
-    scene: [town, castle] 
+    scene:[field, town, castle] 
     // field, town,  
 };
 
@@ -40,3 +40,6 @@ var gameOver;
 var timerX;
 var horsey;
 var timerY;
+var fieldtext;
+var towntext;
+var castletext;

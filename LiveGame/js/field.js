@@ -174,6 +174,8 @@ class field extends Phaser.Scene {
                 let newhp = enemy.data.get('hp');
                 if (newhp <= 0){
                     enemy.destroy();
+                    fieldtext.setVisible(false);
+                    this.physics.add.overlap(mainCharacter, enemy2, hpDecrease2, null, this);
                     enemy2.setVisible(true);
                 }
                 else {
@@ -205,6 +207,7 @@ class field extends Phaser.Scene {
                 let newhp = enemy2.data.get('hp');
                 if (newhp <= 0){
                     enemy2.destroy();
+                    this.physics.add.overlap(mainCharacter, enemy3, hpDecrease3, null, this);
                     enemy3.setVisible(true);
                 }
                 else {
@@ -268,9 +271,11 @@ class field extends Phaser.Scene {
             Camera settings
             Timer settings
         */
+
+        fieldtext = this.add.text((100), (100), "Hello! You are a soldier in the trojan war!\nYou must fight your way to the castle to save the princess!\nRuthless bandits guard this road, defeat them!",
+        {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+
         this.physics.add.overlap(mainCharacter, enemy, hpDecrease, null, this);
-        this.physics.add.overlap(mainCharacter, enemy2, hpDecrease2, null, this);
-        this.physics.add.overlap(mainCharacter, enemy3, hpDecrease3, null, this);
         this.physics.add.overlap(mainCharacter, flag, flagDrop, null, this);
 
         cursors = this.input.keyboard.createCursorKeys();
@@ -297,9 +302,11 @@ class field extends Phaser.Scene {
     update () {
         //Game over function
         if (mainhp <= 0){
+            fieldtext.setVisible(false);
             this.physics.pause();
             mainCharacter.setTint(0xff0000);
             gameOver.visible = true;
+            
         }
 
         //Controls motion when certain keys are pressed down
