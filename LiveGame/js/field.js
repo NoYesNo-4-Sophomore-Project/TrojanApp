@@ -30,6 +30,7 @@ class field extends Phaser.Scene {
         this.background.setDisplaySize(widthGame, heightGame);
         this.background2.setDisplaySize(2560, heightGame);
         this.pointer = this.input.activePointer;
+        this.pointer2 = this.input.activePointer;
         
 
         /* 
@@ -350,9 +351,18 @@ class field extends Phaser.Scene {
             mainCharacter.setVelocityY(-200);
         } 
 
-        if (this.input.activePointer.isDown){
+        if (this.input.activePointer.isDown && this.input.activePointer.x > 960){
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
-        }   
+        }
+        if (this.input.activePointer.isDown && this.input.activePointer.x < 960){
+            mainCharacter.setVelocityX(-160);
+            mainCharacter.anims.play('left', true);
     }
+    //I feel like this should work for attack but it doesn't for some reason
+   // if (this.input.pointer.isDown && this.input.pointer2.isDown){
+     //   mainCharacter.setVelocityX(0);
+       // mainCharacter.anims.play('attack');
+    //}
+}
 }
