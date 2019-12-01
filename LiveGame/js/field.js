@@ -360,7 +360,6 @@ class field extends Phaser.Scene {
             mainCharacter.anims.play('right', true);
 
             if (this.input.pointer2.isDown){
-                mainCharacter.setVelocityX(0);
                 mainCharacter.anims.play('attack');
             }
         }
@@ -369,7 +368,6 @@ class field extends Phaser.Scene {
             mainCharacter.anims.play('left', true);
 
             if (this.input.pointer2.isDown){
-                mainCharacter.setVelocityX(0);
                 mainCharacter.anims.play('attack');
             }
         }
