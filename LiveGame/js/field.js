@@ -30,8 +30,9 @@ class field extends Phaser.Scene {
         this.background.setDisplaySize(widthGame, heightGame);
         this.background2.setDisplaySize(2560, heightGame);
 
-        this.pointer = this.input.activePointer;
-        this.pointer2 = this.input.activePointer;
+        this.input.addPointer(2);
+        // this.pointer = this.input.activePointer;
+        // this.pointer2 = this.input.activePointer;
         
 
         /* 
@@ -354,21 +355,21 @@ class field extends Phaser.Scene {
 
         var midpoint = (widthGame/2);
 
-        if (this.pointer.isDown && this.pointer.x > midpoint){
+        if (this.input.pointer1.isDown && this.input.pointer1.x > midpoint){
             console.log("kill");
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
         }
 
-        if (this.pointer.isDown && this.pointer.x < midpoint){
+        else if (this.input.pointer1.isDown && this.input.pointer1.x < midpoint){
             mainCharacter.setVelocityX(-160);
             mainCharacter.anims.play('left', true);
         }
     
     //I feel like this should work for attack but it doesn't for some reason
-        // if (this.pointer.isDown && this.pointer2.isDown){
-        //     mainCharacter.setVelocityX(0);
-        //     mainCharacter.anims.play('attack');
-        // }
+        else if (this.input.pointer1.isDown && this.input.pointer2.isDown){
+            mainCharacter.setVelocityX(0);
+            mainCharacter.anims.play('attack');
+        }
     }
 }
