@@ -15,7 +15,11 @@ var config = {
     //Defuzzes characters
     pixelArt: true,
     scale: {
-        mode: Phaser.Scale.FIT,
+        parent:'troy',
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        mode: Phaser.Scale.SCALE,
+        height: '100%',
+        width: '100%'
     },
     //Insert scenes here
     // May need to use 'new' keyword
@@ -46,3 +50,5 @@ var timerY;
 var fieldtext;
 var towntext;
 var castletext;
+var heightGame;
+var widthGame;
