@@ -356,20 +356,38 @@ class field extends Phaser.Scene {
         var midpoint = (widthGame/2);
 
         if (this.input.pointer1.isDown && this.input.pointer1.x > midpoint){
-            console.log("kill");
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
-        }
 
+            if (this.input.pointer2.isDown){
+                mainCharacter.setVelocityX(0);
+                mainCharacter.anims.play('attack');
+            }
+        }
         else if (this.input.pointer1.isDown && this.input.pointer1.x < midpoint){
             mainCharacter.setVelocityX(-160);
             mainCharacter.anims.play('left', true);
+
+            if (this.input.pointer2.isDown){
+                mainCharacter.setVelocityX(0);
+                mainCharacter.anims.play('attack');
+            }
         }
+
+        // if (this.input.pointer1.isDown){
+        //     console.log("pointer 1 down");
+        //     if (this.input.pointer2.isDown){
+        //         console.log("pointer 2 is down");
+        //     }
+        //     else {
+        //         console.log("Not coming through");
+        //     }
+        // }
     
     //I feel like this should work for attack but it doesn't for some reason
-        else if (this.input.pointer1.isDown && this.input.pointer2.isDown){
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack');
-        }
+        // else if (this.input.pointer1.isDown && this.input.pointer2.isDown){
+        //     mainCharacter.setVelocityX(0);
+        //     mainCharacter.anims.play('attack');
+        // }
     }
 }
