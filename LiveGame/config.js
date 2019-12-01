@@ -14,6 +14,9 @@ var config = {
     },
     //Defuzzes characters
     pixelArt: true,
+    scale: {
+        mode: Phaser.Scale.FIT,
+    },
     //Insert scenes here
     // May need to use 'new' keyword
     scene:[field, town, castle] 

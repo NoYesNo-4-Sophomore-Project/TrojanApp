@@ -14,57 +14,7 @@ class town extends Phaser.Scene {
     }
 
     create () {
-        this.background3 = this.add.tileSprite(0, 0, widthGame, heightGame, 'siege');
-        this.background3.setOrigin(0, 0);
-        this.background3.setScrollFactor(1);
-        var heightGame = this.sys.canvas.height;
-        var widthGame = this.sys.canvas.width;
-        this.background3.setDisplaySize(widthGame, heightGame);
 
-        mainCharacter = this.physics.add.sprite(100, 450, 'main');
-        
-        mainCharacter.setCollideWorldBounds(true);
-        mainCharacter.displayHeight = heightGame * 0.3;
-        mainCharacter.displayWidth = widthGame * 0.15;
-        mainCharacter.setBounce(0.2);
-        
-        var b = new Phaser.Geom.Rectangle(100, 450, 32, 48);
-        mainCharacter.setSize(b.width, b.height);
-        mainCharacter.setOffset(0, 0);
-
-        mainCharacter.setDataEnabled();
-        mainCharacter.data.set('hp', 100);
-        
-
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('main', { start: 2, end: 5 }),
-            frameRate: 5,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('main', {start: 2, end: 5}),
-            frameRate: 5,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'main', frame: 0 } ],
-            frameRate: 20
-        });
-
-        this.anims.create({
-            key: 'attack',
-            frames: this.anims.generateFrameNumbers('main', {start: 1, end: 1}),
-            frameRate: 5,
-        });
-
-    
-
-    var c = new Phaser.Geom.Rectangle(500, 450, 28, 32);
 
         /*
             Background primary set-up, although not as a tileSprite

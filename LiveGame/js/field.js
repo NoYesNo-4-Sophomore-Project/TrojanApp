@@ -352,12 +352,17 @@ class field extends Phaser.Scene {
         } 
 
         if (this.input.activePointer.isDown && this.input.activePointer.x > 960){
+            console.log("Helo");
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
         }
         if (this.input.activePointer.isDown && this.input.activePointer.x < 960){
             mainCharacter.setVelocityX(-160);
             mainCharacter.anims.play('left', true);
+            
+        if (this.input.activePointer.isDown && this.input.activePointer.y > 500 && mainCharacter.body.onFloor()){
+            mainCharacter.setVelocityY(-200);
+        }
     }
     //I feel like this should work for attack but it doesn't for some reason
    // if (this.input.pointer.isDown && this.input.pointer2.isDown){
