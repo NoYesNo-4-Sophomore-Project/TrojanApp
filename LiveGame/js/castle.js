@@ -17,10 +17,11 @@ class castle extends Phaser.Scene {
         this.background = this.add.tileSprite(0, 0, widthGame, heightGame, 'castle');
         this.background.setOrigin(0, 0);
         this.background.setScrollFactor(0);
-        var heightGame = this.sys.canvas.height;
-        var widthGame = this.sys.canvas.width;
+        heightGame = this.sys.canvas.height;
+        widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
 
+        this.input.addPointer(2);
         /*
             Main character setting
             Reset's health at this stage as well
@@ -74,7 +75,7 @@ class castle extends Phaser.Scene {
             Minotaur animation       
         */
 
-       minoTaur = this.physics.add.sprite(500, 450, 'minotaur');
+       minoTaur = this.physics.add.sprite(800, 450, 'minotaur');
         
        minoTaur.setCollideWorldBounds(true);
        minoTaur.displayHeight = heightGame * 0.7;
@@ -100,7 +101,7 @@ class castle extends Phaser.Scene {
             Princess shouldn't need health b/c we're saving her
        */
 
-        princess = this.physics.add.sprite(900, 450, 'princess');
+        princess = this.physics.add.sprite(1000, 450, 'princess');
 
         princess.setCollideWorldBounds(true);
         princess.displayHeight = heightGame * 0.3;
@@ -185,30 +186,38 @@ class castle extends Phaser.Scene {
             gameOver.visible = true;
         }
 
-        //Controls motion when certain keys are pressed down
-        if (cursors.left.isDown)
-        {
-            mainCharacter.setVelocityX(-160);
-            mainCharacter.anims.play('left', true);
-        }
-        else if (cursors.right.isDown)
-        {
+        //Controls motion when certain touches are made
+        var midpointII = (widthGame/2);
+        var halfwayII = (heightGame/2);
+
+        if (this.input.pointer1.isDown && this.input.pointer1.x > midpointII){
             mainCharacter.setVelocityX(160);
             mainCharacter.anims.play('right', true);
+
+            if (this.input.pointer2.isDown){
+                mainCharacter.anims.play('attack');
+            }
         }
-        else if (aKey.isDown){
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack'); 
+        else if (this.input.pointer1.isDown && this.input.pointer1.x < midpointII){
+            mainCharacter.setVelocityX(-160);
+            mainCharacter.anims.play('left', true);
+
+            if (this.input.pointer2.isDown){
+                mainCharacter.anims.play('attack');
+            }
         }
-        else
-        {
+        else {
             mainCharacter.setVelocityX(0);
             mainCharacter.anims.play('turn');
         }
         
-        if (cursors.up.isDown && mainCharacter.body.onFloor()){
-            mainCharacter.setVelocityY(-400);
-        }  
+        if (this.input.pointer1.isDown && this.input.pointer1.y < halfwayII){
+            mainCharacter.setVelocityY(-200);
+
+            if (this.input.pointer2.isDown){
+                mainCharacter.anims.play('attack');
+            }
+        } 
 
     }
 }

@@ -9,7 +9,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 300},
-            debug: true
+            debug: false
         }
     },
     //Defuzzes characters
@@ -23,7 +23,7 @@ var config = {
     },
     //Insert scenes here
     // May need to use 'new' keyword
-    scene:[field, town, castle] 
+    scene:[ field, town, castle] 
     // field, town,  
 };
 

@@ -30,7 +30,7 @@ class town extends Phaser.Scene {
         /*
             Pointer creation
         */
-        this.pointer = this.input.activePointer;
+       this.input.addPointer(2);
 
         /*
             Horse inclusion
@@ -334,35 +334,38 @@ class town extends Phaser.Scene {
             
         }
 
-        //Controls motion when certain keys are pressed down
-        if (cursors.left.isDown)
-        {
-            mainCharacter.setVelocityX(-160);
-            mainCharacter.anims.play('left', true);
-        }
-        else if (cursors.right.isDown)
-        {
-            mainCharacter.setVelocityX(160);
-            mainCharacter.anims.play('right', true);
-        }
-        else if (aKey.isDown){
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack'); 
-        }
-        else
-        {
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('turn');
-        }
-        
-        if (cursors.up.isDown && mainCharacter.body.onFloor()){
-            mainCharacter.setVelocityY(-200);
-        }    
+       //Controls motion when certain touches motions are made
+       var midpoint = (widthGame/2);
+       var halfway = (heightGame/2);
 
-        if (this.input.activePointer.isDown){
-            mainCharacter.setVelocityX(160);
-            mainCharacter.anims.play('right', true);
-        }
+       if (this.input.pointer1.isDown && this.input.pointer1.x > midpoint){
+           mainCharacter.setVelocityX(160);
+           mainCharacter.anims.play('right', true);
+
+           if (this.input.pointer2.isDown){
+               mainCharacter.anims.play('attack');
+           }
+       }
+       else if (this.input.pointer1.isDown && this.input.pointer1.x < midpoint){
+           mainCharacter.setVelocityX(-160);
+           mainCharacter.anims.play('left', true);
+
+           if (this.input.pointer2.isDown){
+               mainCharacter.anims.play('attack');
+           }
+       }
+       else {
+           mainCharacter.setVelocityX(0);
+           mainCharacter.anims.play('turn');
+       }
+       
+       if (this.input.pointer1.isDown && this.input.pointer1.y < halfway && mainCharacter.body.onFloor()){
+           mainCharacter.setVelocityY(-200);
+
+           if (this.input.pointer2.isDown){
+               mainCharacter.anims.play('attack');
+           }
+       }
              
     }
 
