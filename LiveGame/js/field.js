@@ -27,8 +27,8 @@ class field extends Phaser.Scene {
         this.background2.setScrollFactor(1);
         heightGame = this.sys.canvas.height;
         widthGame = this.sys.canvas.width;
-        this.background.setDisplaySize(widthGame, heightGame);
-        this.background2.setDisplaySize(widthGame, heightGame);
+        this.background.setDisplaySize(widthGame * 1.25, heightGame);
+        this.background2.setDisplaySize(widthGame * 1.25, heightGame);
 
         this.input.addPointer(2);
         // this.pointer = this.input.activePointer;
