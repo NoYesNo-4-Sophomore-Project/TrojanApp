@@ -28,7 +28,7 @@ class field extends Phaser.Scene {
         heightGame = this.sys.canvas.height;
         widthGame = this.sys.canvas.width;
         this.background.setDisplaySize(widthGame, heightGame);
-        this.background2.setDisplaySize(2560, heightGame);
+        this.background2.setDisplaySize(widthGame, heightGame);
 
         this.input.addPointer(2);
         // this.pointer = this.input.activePointer;
@@ -291,8 +291,8 @@ class field extends Phaser.Scene {
             Timer settings
         */
 
-        fieldtext = this.add.text((100), (100), "Hello! You are a soldier in the trojan war!\nYou must fight your way to the castle to save the princess!\nRuthless bandits guard this road, defeat them!",
-        {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+        // fieldtext = this.add.text((100), (100), "Hello! You are a soldier in the trojan war!\nYou must fight your way to the castle to save the princess!\nRuthless bandits guard this road, defeat them!",
+        // {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
 
         this.physics.add.overlap(mainCharacter, enemy, hpDecrease, null, this);
         this.physics.add.overlap(mainCharacter, flag, flagDrop, null, this);

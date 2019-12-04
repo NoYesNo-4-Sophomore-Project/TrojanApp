@@ -161,8 +161,8 @@ class castle extends Phaser.Scene {
             Game winner text 
        */
 
-        castletext = this.add.text((100), (100), "You made it inside the castle!\nNow defeat the mighty minotaur and save the princess!", 
-       {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+    //     castletext = this.add.text((100), (100), "You made it inside the castle!\nNow defeat the mighty minotaur and save the princess!", 
+    //    {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
 
         this.physics.add.overlap(mainCharacter, minoTaur, hpDecrease, null, this);
         this.physics.add.collider(mainCharacter, princess, winner, null, this);

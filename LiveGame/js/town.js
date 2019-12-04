@@ -25,7 +25,7 @@ class town extends Phaser.Scene {
         this.backgroundA.setScrollFactor(1);
         var heightGameII = this.sys.canvas.height;
         var widthGameII = this.sys.canvas.width;
-        this.backgroundA.setDisplaySize(2560, heightGameII);
+        this.backgroundA.setDisplaySize(widthGameII, heightGameII);
         
         /*
             Pointer creation
@@ -280,8 +280,8 @@ class town extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
 
-        fieldtext = this.add.text((100), (100), "You defeated the bandits!\nNow you must defeat the guards\nand sneak into the castle inside the trojan horse!", 
-        {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+        // fieldtext = this.add.text((100), (100), "You defeated the bandits!\nNow you must defeat the guards\nand sneak into the castle inside the trojan horse!", 
+        // {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
 
         this.physics.add.overlap(mainCharacter, guard1, hpDecrease, null, this);
         this.physics.add.overlap(mainCharacter, guard2, hpDecrease2, null, this);
