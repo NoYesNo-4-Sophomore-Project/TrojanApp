@@ -25,7 +25,7 @@ class town extends Phaser.Scene {
         this.backgroundA.setScrollFactor(1);
         var heightGameII = this.sys.canvas.height;
         var widthGameII = this.sys.canvas.width;
-        this.backgroundA.setDisplaySize(widthGameII * 1.25, heightGameII);
+        this.backgroundA.setDisplaySize(widthGameII * 1.5, heightGameII);
         
         /*
             Pointer creation
