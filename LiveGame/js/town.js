@@ -369,29 +369,29 @@ class town extends Phaser.Scene {
        }
 
       // Controls motion when certain keys are pressed down
-        if (cursors.left.isDown)
-        {
-            mainCharacter.setVelocityX(-160);
-            mainCharacter.anims.play('left', true);
-        }
-        else if (cursors.right.isDown)
-        {
-            mainCharacter.setVelocityX(160);
-            mainCharacter.anims.play('right', true);
-        }
-        else if (aKey.isDown){
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('attack'); 
-        }
-        else
-        {
-            mainCharacter.setVelocityX(0);
-            mainCharacter.anims.play('turn');
-        }
+      //  if (cursors.left.isDown)
+       // {
+       //     mainCharacter.setVelocityX(-160);
+       //     mainCharacter.anims.play('left', true);
+       // }
+       // else if (cursors.right.isDown)
+       // {
+        //    mainCharacter.setVelocityX(160);
+        //    mainCharacter.anims.play('right', true);
+       // }
+       // else if (aKey.isDown){
+       //     mainCharacter.setVelocityX(0);
+        //    mainCharacter.anims.play('attack'); 
+       // }
+       //else
+        //{
+        //    mainCharacter.setVelocityX(0);
+        //    mainCharacter.anims.play('turn');
+        //}
        
-        if (cursors.up.isDown && mainCharacter.body.onFloor()){
-          mainCharacter.setVelocityY(-200);
-        }     
+       // if (cursors.up.isDown && mainCharacter.body.onFloor()){
+        //  mainCharacter.setVelocityY(-200);
+       // }     
              
     }
 
