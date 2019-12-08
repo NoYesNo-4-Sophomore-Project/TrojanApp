@@ -160,9 +160,9 @@ class castle extends Phaser.Scene {
             Game over text
             Game winner text 
        */
-
-    //     castletext = this.add.text((100), (100), "You made it inside the castle!\nNow defeat the mighty minotaur and save the princess!", 
-    //    {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+         font = heightGame * 0.05;
+         castletext = this.add.text((100), (100), "You made it inside the castle!\nNow defeat the mighty minotaur and save the princess!", 
+         {fontFamily: 'Arial', fontSize: font, color: '#EE204D'});
 
         this.physics.add.overlap(mainCharacter, minoTaur, hpDecrease, null, this);
         this.physics.add.collider(mainCharacter, princess, winner, null, this);
@@ -171,10 +171,11 @@ class castle extends Phaser.Scene {
         aKey = this.input.keyboard.addKey('A');
 
         let get = mainCharacter.getTopLeft()
-        gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
+        gameoverFont = heightGame * 0.1;
+        gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize:gameoverFont, color: '#EE204D'});
         gameOver.visible = false;
 
-        var gameWinner = this.add.text((get.x + 50), (get.y + 50), "WINNER! You saved the princess", {fontFamilt: 'Arial', fontSize: 60, color: '#65A3E1'});
+        var gameWinner = this.add.text((get.x + 50), (get.y + 50), "WINNER! You saved the princess", {fontFamilt: 'Arial', fontSize: gameoverFont, color: '#65A3E1'});
         gameWinner.visible = false;
     }
 

@@ -280,16 +280,14 @@ class town extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
         aKey = this.input.keyboard.addKey('A');
 
-        // fieldtext = this.add.text((100), (100), "You defeated the bandits!\nNow you must defeat the guards\nand sneak into the castle inside the trojan horse!", 
-        // {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+         font = heightGameII * 0.05;
+         fieldtext = this.add.text((100), (100), "You defeated the bandits!\nNow you must defeat the guards\nand sneak into the castle inside the trojan horse!", 
+         {fontFamily: 'Arial', fontSize: font, color: '#EE204D'});
 
         this.physics.add.overlap(mainCharacter, guard1, hpDecrease, null, this);
         this.physics.add.overlap(mainCharacter, guard2, hpDecrease2, null, this);
         this.physics.add.overlap(mainCharacter, guard3, hpDecrease3, null, this);
         this.physics.add.overlap(mainCharacter, guard4, hpDecrease4, null, this);
-        
-        gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
-        gameOver.visible = false;
 
         this.cameras.main.setBounds(0, 0, 2560, heightGameII);
         this.cameras.main.startFollow(mainCharacter);
@@ -307,10 +305,13 @@ class town extends Phaser.Scene {
         aKey = this.input.keyboard.addKey('A');
         
         //TODO: Set this to above the main character's head
-        gameOver = this.add.text(50, 50, "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
+        
+        let get = mainCharacter.getTopLeft()
+        gameoverFont = heightGameII * 0.1;
+        gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: gameoverFont, color: '#EE204D'});
         gameOver.visible = false;
 
-        this.cameras.main.setBounds(0, 0, 2560, heightGame);
+        this.cameras.main.setBounds(0, 0, 2560, heightGameII);
         this.cameras.main.startFollow(mainCharacter);
 
         timerX = this.time.addEvent({
@@ -367,30 +368,30 @@ class town extends Phaser.Scene {
            }
        }
 
-       //Controls motion when certain keys are pressed down
-    //    if (cursors.left.isDown)
-    //    {
-    //        mainCharacter.setVelocityX(-160);
-    //        mainCharacter.anims.play('left', true);
-    //    }
-    //    else if (cursors.right.isDown)
-    //    {
-    //        mainCharacter.setVelocityX(160);
-    //        mainCharacter.anims.play('right', true);
-    //    }
-    //    else if (aKey.isDown){
-    //        mainCharacter.setVelocityX(0);
-    //        mainCharacter.anims.play('attack'); 
-    //    }
-    //    else
-    //    {
-    //        mainCharacter.setVelocityX(0);
-    //        mainCharacter.anims.play('turn');
-    //    }
+      // Controls motion when certain keys are pressed down
+        if (cursors.left.isDown)
+        {
+            mainCharacter.setVelocityX(-160);
+            mainCharacter.anims.play('left', true);
+        }
+        else if (cursors.right.isDown)
+        {
+            mainCharacter.setVelocityX(160);
+            mainCharacter.anims.play('right', true);
+        }
+        else if (aKey.isDown){
+            mainCharacter.setVelocityX(0);
+            mainCharacter.anims.play('attack'); 
+        }
+        else
+        {
+            mainCharacter.setVelocityX(0);
+            mainCharacter.anims.play('turn');
+        }
        
-    //    if (cursors.up.isDown && mainCharacter.body.onFloor()){
-    //        mainCharacter.setVelocityY(-200);
-    //    }     
+        if (cursors.up.isDown && mainCharacter.body.onFloor()){
+          mainCharacter.setVelocityY(-200);
+        }     
              
     }
 

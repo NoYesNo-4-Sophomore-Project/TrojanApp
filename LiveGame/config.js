@@ -23,7 +23,7 @@ var config = {
     },
     //Insert scenes here
     // May need to use 'new' keyword
-    scene:[ field, town, castle] 
+    scene:[field, town, castle] 
     // field, town,  
 };
 
@@ -52,3 +52,5 @@ var towntext;
 var castletext;
 var heightGame;
 var widthGame;
+var font;
+var gameoverFont;

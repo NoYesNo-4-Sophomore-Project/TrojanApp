@@ -290,9 +290,9 @@ class field extends Phaser.Scene {
             Camera settings
             Timer settings
         */
-
-        // fieldtext = this.add.text((100), (100), "Hello! You are a soldier in the trojan war!\nYou must fight your way to the castle to save the princess!\nRuthless bandits guard this road, defeat them!",
-        // {fontFamily: 'Arial', fontSize: 50, color: '#EE204D'});
+         font = heightGame * 0.05;
+         fieldtext = this.add.text((100), (100), "Hello! You are a soldier in the trojan war!\nYou must fight your way to the castle to save the princess!\nRuthless bandits guard this road, defeat them!",
+         {fontFamily: 'Arial', fontSize: font, color: '#EE204D'});
 
         this.physics.add.overlap(mainCharacter, enemy, hpDecrease, null, this);
         this.physics.add.overlap(mainCharacter, flag, flagDrop, null, this);
@@ -301,12 +301,12 @@ class field extends Phaser.Scene {
         aKey = this.input.keyboard.addKey('A');
         
         let get = mainCharacter.getTopLeft()
-        gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: 100, color: '#EE204D'});
+        gameoverFont = heightGame * 0.1;
+        gameOver = this.add.text((get.x + 50), (get.y + 50), "GAME OVER", {fontFamily: 'Arial', fontSize: gameoverFont, color: '#EE204D'});
         gameOver.visible = false;
 
         this.cameras.main.setBounds(0, 0, 2560, heightGame);
         this.cameras.main.startFollow(mainCharacter);
-
         timerX = this.time.addEvent({
             delay: 6000,
             callback: startNextScene,
