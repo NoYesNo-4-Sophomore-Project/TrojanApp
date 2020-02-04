@@ -1,19 +1,10 @@
 # TrojanApp
-New Project for Sophomore Project
+A simple HTML5 game created using the Phaser framework, and integrated with an Android application for use as a experiment in white-hat hacking.
 
-Trying to implement scenes -> Right now only the field scene displays things, so that will be an issue for another day. The file structure still works, we'll just need to make sure they all display at some point. -> Not the purpose of this sprint though......
+The game is made up of a series of stages, and is to be played while malware enters the phone and steals the contact information contained on that phone.
 
-# Reminders
-- If a sprite isn't implementing, chances are you need to add it to the config file
-- Basic file set up:
-    - preload()
-    - create()
-        - background declerations
-        - character declerations
-        - Functions
-        - Colliders
-        - Extra
-    - update()
-- Colliders can only be between two objects
+The purpose of this experiement is to demonstrate the risks of downloading side-loaded apps, while also showing the capabilities of the Phaser framework and our own programing skills.
+
+
 
 
